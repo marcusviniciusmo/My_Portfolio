@@ -1,3 +1,5 @@
 import { DefaultTheme } from '../../@types/styles';
 
-export const LightTheme: DefaultTheme = {};
+export const LightTheme: DefaultTheme = {
+  name: 'Light',
+};

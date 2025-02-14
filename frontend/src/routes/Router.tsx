@@ -7,6 +7,7 @@ import { Certificates } from '../pages/Certificates';
 import { Testimonials } from '../pages/Testimonials';
 import { Blogs } from '../pages/Blogs';
 import { Contact } from '../pages/Contact';
+import { NotFound } from '../pages/NotFound';
 
 export function Router() {
   return (
@@ -19,6 +20,7 @@ export function Router() {
       <Route path="/testimonials" element={<Testimonials />} />
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

@@ -1,5 +1,6 @@
 import { DefaultTheme } from '../../@types/styles';
+import { ThemeNames } from '../../enums/theme';
 
 export const DarkTheme: DefaultTheme = {
-  name: 'Dark',
+  name: ThemeNames.DARK,
 };

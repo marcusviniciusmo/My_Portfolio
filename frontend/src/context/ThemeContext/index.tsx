@@ -2,6 +2,7 @@ import { createContext, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ThemeContextType, ThemeContextProps } from '../../@types/theme';
 import { DefaultTheme } from '../../@types/styles';
+import { ThemeNames } from '../../enums/theme';
 import { LightTheme } from '../../styles/themes/light';
 import { DarkTheme } from '../../styles/themes/dark';
 
@@ -12,7 +13,7 @@ export function ThemeContextProvider({ children }: ThemeContextProps) {
 
   function toggleTheme() {
     setTheme((prevTheme) =>
-      prevTheme.name === 'Light' ? DarkTheme : LightTheme,
+      prevTheme.name === ThemeNames.LIGHT ? DarkTheme : LightTheme,
     );
   }
 

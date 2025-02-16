@@ -2,6 +2,7 @@ import 'styled-components';
 
 export interface DefaultTheme {
   name: string;
+  backgroundImage: string;
   colors: {
     boxShadow: string;
   };

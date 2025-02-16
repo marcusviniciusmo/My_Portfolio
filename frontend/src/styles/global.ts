@@ -2,6 +2,10 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+    --backgroundWhite: #FFFFFF;
+    --colorWhite: #FFFFFF;
+    --gradientBackgroundFrom: #FA5252;
+    --gradientBackgroundTo: #DD2476;
     font-size: 62.5%; /* 1rem = 10px */
   }
 

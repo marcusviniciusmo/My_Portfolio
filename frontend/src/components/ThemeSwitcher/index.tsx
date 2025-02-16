@@ -1,13 +1,23 @@
 import { useContext } from 'react';
+import { LightMode, DarkMode } from '@mui/icons-material';
 import { ThemeContext } from '../../context/ThemeContext';
 import { ThemeContextType } from '../../@types/theme';
+import { ThemeNames } from '../../enums/theme';
+import { ThemeSwitcherContainer } from './styles';
 
 export function ThemeSwitcher() {
-  const { toggleTheme } = useContext<ThemeContextType>(ThemeContext);
+  const { theme, toggleTheme } = useContext<ThemeContextType>(ThemeContext);
 
   return (
-    <button onClick={toggleTheme}>
-      <h1>THEME SWITCHER COMPONENT</h1>
-    </button>
+    <ThemeSwitcherContainer
+      onClick={toggleTheme}
+      title={`${theme.name === ThemeNames.LIGHT ? ThemeNames.DARK : ThemeNames.LIGHT} Mode`}
+    >
+      {theme.name === ThemeNames.LIGHT ? (
+        <DarkMode fontSize="large" />
+      ) : (
+        <LightMode fontSize="large" />
+      )}
+    </ThemeSwitcherContainer>
   );
 }

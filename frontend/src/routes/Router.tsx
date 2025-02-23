@@ -4,6 +4,7 @@ import { About } from '../pages/About';
 import { Resume } from '../pages/Resume';
 import { Projects } from '../pages/Projects';
 import { Certificates } from '../pages/Certificates';
+import { Testimonials } from '../pages/Testimonials';
 
 export function Router() {
   return (
@@ -13,6 +14,7 @@ export function Router() {
       <Route path="/resume" element={<Resume />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/certificates" element={<Certificates />} />
+      <Route path="/testimonials" element={<Testimonials />} />
     </Routes>
   );
 }

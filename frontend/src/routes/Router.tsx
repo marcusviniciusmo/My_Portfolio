@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { routes } from './routes';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
 import { Resume } from '../pages/Resume';
@@ -12,15 +13,15 @@ import { NotFound } from '../pages/NotFound';
 export function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/resume" element={<Resume />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/certificates" element={<Certificates />} />
-      <Route path="/testimonials" element={<Testimonials />} />
-      <Route path="/blogs" element={<Blogs />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path={routes.home} element={<Home />} />
+      <Route path={routes.about} element={<About />} />
+      <Route path={routes.resume} element={<Resume />} />
+      <Route path={routes.projects} element={<Projects />} />
+      <Route path={routes.certificates} element={<Certificates />} />
+      <Route path={routes.testimonials} element={<Testimonials />} />
+      <Route path={routes.blogs} element={<Blogs />} />
+      <Route path={routes.contact} element={<Contact />} />
+      <Route path={routes.notFound} element={<NotFound />} />
     </Routes>
   );
 }

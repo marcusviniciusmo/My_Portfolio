@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { DefaultLayout } from '../layout/DefaultLayout';
 import { routes } from './routes';
 import { Home } from '../pages/Home';
 import { About } from '../pages/About';
@@ -13,15 +14,17 @@ import { NotFound } from '../pages/NotFound';
 export function Router() {
   return (
     <Routes>
-      <Route path={routes.home} element={<Home />} />
-      <Route path={routes.about} element={<About />} />
-      <Route path={routes.resume} element={<Resume />} />
-      <Route path={routes.projects} element={<Projects />} />
-      <Route path={routes.certificates} element={<Certificates />} />
-      <Route path={routes.testimonials} element={<Testimonials />} />
-      <Route path={routes.blogs} element={<Blogs />} />
-      <Route path={routes.contact} element={<Contact />} />
-      <Route path={routes.notFound} element={<NotFound />} />
+      <Route path="/" element={<DefaultLayout />}>
+        <Route path={routes.home} element={<Home />} />
+        <Route path={routes.about} element={<About />} />
+        <Route path={routes.resume} element={<Resume />} />
+        <Route path={routes.projects} element={<Projects />} />
+        <Route path={routes.certificates} element={<Certificates />} />
+        <Route path={routes.testimonials} element={<Testimonials />} />
+        <Route path={routes.blogs} element={<Blogs />} />
+        <Route path={routes.contact} element={<Contact />} />
+        <Route path={routes.notFound} element={<NotFound />} />
+      </Route>
     </Routes>
   );
 }

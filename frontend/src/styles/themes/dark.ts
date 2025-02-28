@@ -9,7 +9,11 @@ export const DarkTheme: DefaultTheme = {
   defaultStyles: defaultStyles,
   styles: {
     primaryBackground: '#111111',
+    secondaryBackground: '#212425',
+    primaryColor: '#FFFFFF',
+    tertiaryColor: '#A6A6A6',
     boxShadow: `0 2px 4px -2px rgba(255, 255, 255, 0.5)`,
+    shadow: '0 20px 13px rgba(255, 255, 255, 0.1)',
   },
   contrastStyles: {
     themeIconColor: '#FFA500',

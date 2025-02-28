@@ -9,7 +9,11 @@ export const LightTheme: DefaultTheme = {
   defaultStyles: defaultStyles,
   styles: {
     primaryBackground: '#FFFFFF',
+    secondaryBackground: '#F3F6F6',
+    primaryColor: '#000000',
+    tertiaryColor: '#7B7B7B',
     boxShadow: `0 2px 4px -2px rgba(0, 0, 0, 0.5)`,
+    shadow: '0 20px 13px rgba(0, 0, 0, 0.1)',
   },
   contrastStyles: {
     themeIconColor: '#00008B',

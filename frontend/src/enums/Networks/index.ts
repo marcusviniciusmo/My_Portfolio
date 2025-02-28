@@ -1,0 +1,7 @@
+export enum NetworksNames {
+  LINKEDIN = 'LINKEDIN',
+  GITHUB = 'GITHUB',
+  WHATSAPP = 'WHATSAPP',
+  INSTAGRAM = 'INSTAGRAM',
+  EMAIL = 'EMAIL',
+}

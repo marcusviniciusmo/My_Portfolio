@@ -1,9 +1,6 @@
-import {
-  Smartphone,
-  Email,
-  LocationOn,
-  CalendarMonth,
-} from '@mui/icons-material';
+import { useEffect, useState } from 'react';
+import { ProfileInfoType } from '../../@types/profileInfo';
+import { ProfileInfoData } from '../../data/ProfileInfo';
 import {
   ProfileInfoContainer,
   Content,
@@ -14,63 +11,41 @@ import {
 } from './styles';
 
 export function ProfileInfo() {
+  const [profileInfoData, setProfileInfoData] = useState<ProfileInfoType[]>([]);
+
+  useEffect(() => {
+    setProfileInfoData(ProfileInfoData);
+  }, []);
+
   return (
     <ProfileInfoContainer>
-      <Content>
-        <Icon profileInfoIconName="SMARTPHONE">
-          <Smartphone fontSize="large" />
-        </Icon>
-        <Info>
-          <Label>Phone</Label>
-          <Data>
-            <a
-              href="https://wa.me/3530832084998"
-              target="_blank"
-              rel="noreferrer"
-            >
-              +353 083 208 4998
-            </a>
-          </Data>
-        </Info>
-      </Content>
+      {profileInfoData.map((profileInfo) => {
+        const IconElement = profileInfo.icon;
 
-      <Content>
-        <Icon profileInfoIconName="EMAIL">
-          <Email fontSize="large" />
-        </Icon>
-        <Info>
-          <Label>Email</Label>
-          <Data>
-            <a
-              href="mailto:marcus.viniciusmo@hotmail.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              marcus.viniciusmo@hotmail.com
-            </a>
-          </Data>
-        </Info>
-      </Content>
-
-      <Content>
-        <Icon profileInfoIconName="LOCATION">
-          <LocationOn fontSize="large" />
-        </Icon>
-        <Info>
-          <Label>Location</Label>
-          <Data>Dublin, Ireland</Data>
-        </Info>
-      </Content>
-
-      <Content>
-        <Icon profileInfoIconName="BIRTHDAY">
-          <CalendarMonth fontSize="large" />
-        </Icon>
-        <Info>
-          <Label>Birthday</Label>
-          <Data>December 28, 1984</Data>
-        </Info>
-      </Content>
+        return (
+          <Content key={profileInfo.profileInfoId}>
+            <Icon profileInfoIconName={profileInfo.profileInfoIconName}>
+              <IconElement fontSize="large" />
+            </Icon>
+            <Info>
+              <Label>{profileInfo.label}</Label>
+              <Data>
+                {profileInfo.link ? (
+                  <a
+                    href={profileInfo.link?.href}
+                    target={profileInfo.link?.target}
+                    rel={profileInfo.link?.rel}
+                  >
+                    {profileInfo.data}
+                  </a>
+                ) : (
+                  <>{profileInfo.data}</>
+                )}
+              </Data>
+            </Info>
+          </Content>
+        );
+      })}
     </ProfileInfoContainer>
   );
 }

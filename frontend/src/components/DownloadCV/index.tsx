@@ -1,3 +1,13 @@
+import { Download } from '@mui/icons-material';
+import { DownloadCVContainer } from './styles';
+
 export function DownloadCV() {
-  return <h1>DOWNLOAD CV COMPONENT</h1>;
+  const title = 'Download CV';
+
+  return (
+    <DownloadCVContainer title={title}>
+      <Download fontSize="large" />
+      Download CV
+    </DownloadCVContainer>
+  );
 }

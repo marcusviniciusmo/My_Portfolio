@@ -3,6 +3,18 @@ import 'styled-components';
 export interface DefaultTheme {
   name: string;
   backgroundImage: string;
+  defaultStyles: DefaultStylesType;
+  styles: {
+    boxShadow: string;
+  };
+  contrastStyles: {
+    themeIconColor: string;
+  };
+}
+
+export interface DefaultStylesType {
+  baseBackground: string;
+  baseColor: string;
 }
 
 declare module 'styled-components' {

@@ -1,7 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
+import { setBackgroundToGradient } from '../utils/Functions';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+    --gradientBackgroundFrom: #FA5252;
+    --gradientBackgroundTo: #DD2476;
     font-size: 62.5%; /* 1rem = 10px */
   }
 
@@ -33,5 +36,12 @@ export const GlobalStyle = createGlobalStyle`
 
   &:focus-visible {
     outline: 0;
+  }
+
+  &.hoverDefault {
+    &:hover {
+      ${setBackgroundToGradient()};
+      color: ${({ theme }) => theme.defaultStyles.baseColor};
+    }
   }
 `;

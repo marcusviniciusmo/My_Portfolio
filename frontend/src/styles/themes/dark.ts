@@ -8,6 +8,7 @@ export const DarkTheme: DefaultTheme = {
   backgroundImage: DarkBackground,
   defaultStyles: defaultStyles,
   styles: {
+    primaryBackground: '#111111',
     boxShadow: `0 2px 4px -2px rgba(255, 255, 255, 0.5)`,
   },
   contrastStyles: {

@@ -38,6 +38,13 @@ export const GlobalStyle = createGlobalStyle`
     outline: 0;
   }
 
+  &.viewComponents {
+    background: ${({ theme }) => theme.styles.primaryBackground};
+    height: 100%;
+    margin-top: 17.6rem;
+    border-radius: 2rem;
+  }
+
   &.hoverDefault {
     &:hover {
       ${setBackgroundToGradient()};

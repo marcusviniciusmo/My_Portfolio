@@ -8,6 +8,7 @@ export const LightTheme: DefaultTheme = {
   backgroundImage: LightBackground,
   defaultStyles: defaultStyles,
   styles: {
+    primaryBackground: '#FFFFFF',
     boxShadow: `0 2px 4px -2px rgba(0, 0, 0, 0.5)`,
   },
   contrastStyles: {

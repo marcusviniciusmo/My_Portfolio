@@ -5,6 +5,7 @@ export interface DefaultTheme {
   backgroundImage: string;
   defaultStyles: DefaultStylesType;
   styles: {
+    primaryBackground: string;
     boxShadow: string;
   };
   contrastStyles: {

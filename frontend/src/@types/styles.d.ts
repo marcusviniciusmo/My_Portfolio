@@ -9,7 +9,9 @@ export interface DefaultTheme {
     primaryBackground: string;
     secondaryBackground: string;
     primaryColor: string;
+    secondaryColor: string;
     tertiaryColor: string;
+    primaryBorder: string;
     boxShadow: string;
     shadow: string;
   };

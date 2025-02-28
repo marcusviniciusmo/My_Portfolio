@@ -1,4 +1,5 @@
 import 'styled-components';
+import { NetworksIconsColorsType } from './networks';
 
 export interface DefaultTheme {
   name: string;
@@ -15,6 +16,7 @@ export interface DefaultTheme {
   contrastStyles: {
     themeIconColor: string;
   };
+  networksIconsColors: NetworksIconsColorsType;
 }
 
 export interface DefaultStylesType {

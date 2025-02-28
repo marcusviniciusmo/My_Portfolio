@@ -18,4 +18,11 @@ export const LightTheme: DefaultTheme = {
   contrastStyles: {
     themeIconColor: '#00008B',
   },
+  networksIconsColors: {
+    LINKEDIN: '#0175B4',
+    GITHUB: '#181515',
+    WHATSAPP: '#23D366',
+    INSTAGRAM: '#F04B5A',
+    EMAIL: '#0363B8',
+  },
 };

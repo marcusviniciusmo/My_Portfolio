@@ -18,4 +18,11 @@ export const DarkTheme: DefaultTheme = {
   contrastStyles: {
     themeIconColor: '#FFA500',
   },
+  networksIconsColors: {
+    LINKEDIN: '#E9E9EA',
+    GITHUB: '#FFFFFF',
+    WHATSAPP: '#B5FFAA',
+    INSTAGRAM: '#E1146C',
+    EMAIL: '#2EDCFD',
+  },
 };

@@ -1,5 +1,6 @@
 import { Networks } from '../Networks';
 import { ProfileInfo } from '../ProfileInfo';
+import { DownloadCV } from '../DownloadCV';
 
 export function Profile() {
   return (
@@ -8,6 +9,8 @@ export function Profile() {
       <Networks />
 
       <ProfileInfo />
+
+      <DownloadCV />
     </>
   );
 }

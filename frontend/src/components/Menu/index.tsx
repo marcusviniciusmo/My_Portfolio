@@ -1,18 +1,69 @@
+import {
+  PermIdentity,
+  Receipt,
+  Devices,
+  CardMembership,
+  FormatQuote,
+  AutoStories,
+  Call,
+} from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 import { routes } from '../../routes/routes';
+import { MenuContainer, List, Item } from './styles';
 
 export function Menu() {
   return (
-    <>
-      <h1>MENU COMPONENT</h1>
-      <NavLink to={routes.home}>home</NavLink>
-      <NavLink to={routes.about}>about</NavLink>
-      <NavLink to={routes.resume}>resume</NavLink>
-      <NavLink to={routes.projects}>projects</NavLink>
-      <NavLink to={routes.certificates}>certificates</NavLink>
-      <NavLink to={routes.testimonials}>testimonials</NavLink>
-      <NavLink to={routes.blogs}>blogs</NavLink>
-      <NavLink to={routes.contact}>contact</NavLink>
-    </>
+    <MenuContainer>
+      <List>
+        <NavLink to={routes.about}>
+          <Item>
+            <PermIdentity fontSize="large" />
+            About
+          </Item>
+        </NavLink>
+
+        <NavLink to={routes.resume}>
+          <Item>
+            <Receipt fontSize="large" />
+            Resume
+          </Item>
+        </NavLink>
+
+        <NavLink to={routes.projects}>
+          <Item>
+            <Devices fontSize="large" />
+            Projects
+          </Item>
+        </NavLink>
+
+        <NavLink to={routes.certificates}>
+          <Item>
+            <CardMembership fontSize="large" />
+            Certificates
+          </Item>
+        </NavLink>
+
+        <NavLink to={routes.testimonials}>
+          <Item>
+            <FormatQuote fontSize="large" />
+            Testimonials
+          </Item>
+        </NavLink>
+
+        <NavLink to={routes.blogs}>
+          <Item>
+            <AutoStories fontSize="large" />
+            Blogs
+          </Item>
+        </NavLink>
+
+        <NavLink to={routes.contact}>
+          <Item>
+            <Call fontSize="large" />
+            Contact
+          </Item>
+        </NavLink>
+      </List>
+    </MenuContainer>
   );
 }

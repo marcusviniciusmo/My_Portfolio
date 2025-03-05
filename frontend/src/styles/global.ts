@@ -45,6 +45,14 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 2rem;
   }
 
+  &.outletContainer {
+    color: ${({ theme }) => theme.styles.primaryColor};
+    width: 84rem;
+    padding: 4.8rem 5.6rem;
+    display: flex;
+    flex-direction: column;
+  }
+
   &.hoverDefault {
     &:hover {
       ${setBackgroundToGradient()};

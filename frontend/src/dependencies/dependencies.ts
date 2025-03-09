@@ -1,6 +1,10 @@
 /*
   DEPENDENCIES
 
+  ### - EMAIL JS {
+    npm i emailjs-com
+  }
+
   ### - ESLINT {
     npm i eslint -D
     npm i @rocketseat/eslint-config -D

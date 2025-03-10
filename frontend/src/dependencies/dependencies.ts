@@ -18,6 +18,10 @@
     npm i react-router-dom
   }
 
+  ### - REACT TOASTIFY {
+    npm i react-toastify
+  }
+
   ### - STYLED COMPONENTS {
     npm i styled-components
     npm i @types/styled-components -D

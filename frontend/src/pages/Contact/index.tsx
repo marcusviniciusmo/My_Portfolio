@@ -1,19 +1,8 @@
 import { useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { ContactFormType, contactFormInitialState } from '../../@types/contact.d';
 import { ContactContainer, Form, Text, Inputs, Submit } from './styles';
 import emailjs from 'emailjs-com';
-
-interface ContactFormType {
-  name: string;
-  email: string;
-  message: string;
-}
-
-const contactFormInitialState: ContactFormType = {
-  name: '',
-  email: '',
-  message: ''
-}
 
 export function Contact() {
   const [contactForm, setContactForm] = useState<ContactFormType>(contactFormInitialState)

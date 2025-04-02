@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { TitlePage } from '../../components/TitlePage';
+import { Input } from '../../components/Input';
 import { Toastify } from '../../components/Toastify';
 import { ContactFormType, contactFormInitialState } from '../../@types/contact.d';
 import { ContactContainer, Form, Text, Inputs, Submit } from './styles';
@@ -44,19 +45,18 @@ export function Contact() {
       <Form onSubmit={handleSubmitForm}>
         <Text>Thanks for taking the time to reach out.</Text>
         <Inputs>
-          <input
-            name="name"
+          <Input
+            name='name'
             type="text"
             placeholder="Name"
-            required
             value={contactForm.name}
             onChange={handleChangeField}
           />
-          <input
+
+          <Input
             name="email"
-            type="email"
+            type="text"
             placeholder="Email"
-            required
             value={contactForm.email}
             onChange={handleChangeField}
           />

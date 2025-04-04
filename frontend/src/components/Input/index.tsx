@@ -1,7 +1,6 @@
 import { useState } from "react"
+import { InputProps } from "../../@types/input";
 import { InputContainer, StyledInput, Label } from "./styles"
-
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 export function Input({ name, type, placeholder, value, onChange }: InputProps) {
   const [focused, setFocused] = useState<boolean>(false);

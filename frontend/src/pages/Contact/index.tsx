@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { TitlePage } from '../../components/TitlePage';
 import { Input } from '../../components/Input';
+import { Textarea } from '../../components/Textarea';
 import { Toastify } from '../../components/Toastify';
 import { ContactFormType, contactFormInitialState } from '../../@types/contact.d';
 import { ContactContainer, Form, Text, Inputs, Submit } from './styles';
@@ -62,10 +63,9 @@ export function Contact() {
           />
         </Inputs>
 
-        <textarea
+        <Textarea
           name="message"
           placeholder="Message"
-          required
           value={contactForm.message}
           onChange={handleChangeField}
         />

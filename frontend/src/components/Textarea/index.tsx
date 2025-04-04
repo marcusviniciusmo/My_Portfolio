@@ -1,7 +1,6 @@
 import { useState } from "react"
+import { TextareaProps } from "../../@types/textarea";
 import { TextareaContainer, Label, StyledTextarea } from "./styles"
-
-interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 export function Textarea({ name, placeholder, value, onChange }: TextareaProps) {
   const [focused, setFocused] = useState<boolean>(false);

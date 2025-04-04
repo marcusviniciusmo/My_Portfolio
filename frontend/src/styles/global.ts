@@ -57,13 +57,13 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
 
-  &.inputContainer {
+  &.inputContainer, &.textareaContainer {
     background: ${({ theme }) => theme.styles.primaryBackground};
     flex: 1;
     position: relative;
   }
 
-  &.inputLabel {
+  &.inputLabel, &.textareaLabel {
     background: ${({ theme }) => theme.styles.primaryBackground};
     color: ${({ theme }) => theme.styles.secondaryColor};
     font-size: 1.6rem;
@@ -77,7 +77,7 @@ export const GlobalStyle = createGlobalStyle`
     transition: all 0.2s ease-in-out;
   }
 
-  &.styledInput {
+  &.styledInput, &.styledTextarea {
     color: ${({ theme }) => theme.styles.primaryColor};
     border: 2px solid ${({ theme }) => theme.styles.secondaryBackground};
     background: transparent;

@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 import { setBackgroundToGradient } from '../utils/Functions';
 
+export const borderColors = [
+  'var(--borderColor1)',
+  'var(--borderColor2)',
+  'var(--borderColor3)',
+];
+
 export const GlobalStyle = createGlobalStyle`
   :root {
     --boxShadow:
@@ -8,6 +14,9 @@ export const GlobalStyle = createGlobalStyle`
       0 0 5px ${({ theme }) => theme.styles.primaryColor};
     --gradientBackgroundFrom: #FA5252;
     --gradientBackgroundTo: #DD2476;
+    --borderColor1: #FCF4FF;
+    --borderColor2: #EEFBFF;
+    --borderColor3: #FFF0F0;
     --max-z-index: 999;
     font-size: 62.5%; /* 1rem = 10px */
   }

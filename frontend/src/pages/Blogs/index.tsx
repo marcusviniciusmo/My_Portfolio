@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import { BlogsContainer, Content, Blog, Box, Image, Name } from './styles';
 import RocketseatBlog from '../../assets/blogs/rocketseatBlog.png'
@@ -32,24 +33,6 @@ const blogsList: blogType[] = [
     url: 'https://www.cursoemvideo.com/blog/'
   }
 ]
-
-function getIndexMap(list: Array<{ id: string }>) {
-  const map = new Map<string, number>();
-
-  list.forEach((item, index) => {
-    map.set(item.id, index);
-  });
-
-  return map;
-}
-
-function setBorderColor(
-  borderColors: Array<string>,
-  indexMap: Map<string, number>,
-  listId: string
-) {
-  return borderColors[indexMap.get(listId)! % borderColors.length];
-}
 
 export function Blogs() {
   const [isListInHover, setIsListInHover] = useState<boolean>(false);

@@ -1,33 +1,22 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { blogsData } from '../../data/Blogs';
 import { BlogType } from '../../@types/blogs';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import { BlogsContainer, Content, Blog, Box, Image, Name } from './styles';
-import RocketseatBlog from '../../assets/blogs/rocketseatBlog.png'
-import CursoEmVideoBlog from '../../assets/blogs/cursoEmVideoBlog.jpeg'
-
-const blogsList: BlogType[] = [
-  {
-    id: '1',
-    name: 'Blog da Rocketseat',
-    image: RocketseatBlog,
-    url: 'https://blog.rocketseat.com.br/'
-  },
-  {
-    id: '2',
-    name: 'Curso em Video - Blog',
-    image: CursoEmVideoBlog,
-    url: 'https://www.cursoemvideo.com/blog/'
-  }
-]
 
 export function Blogs() {
+  const [blogsList, setBlogsList] =  useState<BlogType[] | []>(blogsData);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(
     new Map()
   );
+
+  useEffect(() => {
+    setBlogsList(blogsData);
+  }, []);
 
   useEffect(() => {
     const map = getIndexMap(blogsList);

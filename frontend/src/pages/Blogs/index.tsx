@@ -1,25 +1,13 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { BlogType } from '../../@types/blogs';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import { BlogsContainer, Content, Blog, Box, Image, Name } from './styles';
 import RocketseatBlog from '../../assets/blogs/rocketseatBlog.png'
 import CursoEmVideoBlog from '../../assets/blogs/cursoEmVideoBlog.jpeg'
 
-interface blogType {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-}
-
-export interface BlogProps {
-  borderColor: string;
-  isListInHover: boolean;
-  isItemInHover: boolean;
-}
-
-const blogsList: blogType[] = [
+const blogsList: BlogType[] = [
   {
     id: '1',
     name: 'Blog da Rocketseat',

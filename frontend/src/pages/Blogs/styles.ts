@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ThemesNames } from '../../enums/ThemeSwitcher';
-import { BlogProps } from '.';
+import { BlogProps } from '../../@types/blogs';
 
 const shouldForwardProp = (prop: string) =>
   !['isListInHover', 'isItemInHover', 'borderColor'].includes(prop);

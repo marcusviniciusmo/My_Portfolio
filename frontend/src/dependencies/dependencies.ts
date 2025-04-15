@@ -10,6 +10,10 @@
     npm i @rocketseat/eslint-config -D
   }
 
+  ### - FRAMER MOTION {
+    npm install framer-motion
+  }
+
   ### - MATERIAL UI ICONS {
     npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
   }

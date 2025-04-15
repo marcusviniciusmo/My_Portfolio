@@ -2,16 +2,9 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { TitlePage } from '../../components/TitlePage';
+import { TestimonialType } from '../../@types/testimonials';
 import Avatar from '../../assets/profile/profilePhoto.jpeg';
 import * as Styles from './styles';
-
-interface TestimonialType {
-  id: string;
-  image: string;
-  quote: string;
-  name: string;
-  role: string;
-}
 
 const testimonialList: TestimonialType[] = [
   {

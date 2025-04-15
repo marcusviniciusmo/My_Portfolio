@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
 import { TitlePage } from '../../components/TitlePage';
 import Avatar from '../../assets/profile/profilePhoto.jpeg';
@@ -43,7 +44,7 @@ export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [titleArrowLeft, setTitleArrowLeft] = useState<string>('Previous');
   const [titleArrowRight, setTitleArrowRight] = useState<string>('Next');
-  
+
   const activeTestimonial = testimonialList[activeIndex];
 
   useEffect(() => {
@@ -59,8 +60,8 @@ export function Testimonials() {
   })
 
   function handlePrevious() {
-    setActiveIndex((prev) => 
-    prev === 0 ? testimonialList.length - 1 : prev - 1);
+    setActiveIndex((prev) =>
+      prev === 0 ? testimonialList.length - 1 : prev - 1);
   }
 
   function handleNext() {
@@ -83,12 +84,23 @@ export function Testimonials() {
           <ChevronLeft className='arrow' titleAccess={titleArrowLeft} />
         </Styles.ArrowButton>
 
-        <Styles.Testimonial>
-          <Styles.Image src={activeTestimonial.image} />
-          <Styles.Quote>{activeTestimonial.quote}</Styles.Quote>
-          <Styles.Name>{activeTestimonial.name}</Styles.Name>
-          <Styles.Role>{activeTestimonial.role}</Styles.Role>
-        </Styles.Testimonial>
+        <AnimatePresence mode='wait'>
+          <motion.div
+            key={activeTestimonial.id}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            style={{ width: '100%' }}
+          >
+            <Styles.Testimonial>
+              <Styles.Image src={activeTestimonial.image} />
+              <Styles.Quote>{activeTestimonial.quote}</Styles.Quote>
+              <Styles.Name>{activeTestimonial.name}</Styles.Name>
+              <Styles.Role>{activeTestimonial.role}</Styles.Role>
+            </Styles.Testimonial>
+          </motion.div>
+        </AnimatePresence>
 
         <Styles.ArrowButton onClick={handleNext}>
           <ChevronRight className='arrow' titleAccess={titleArrowRight} />

@@ -14,6 +14,23 @@
     npm install framer-motion
   }
 
+  ### - GIT - LFS {
+    brew install git-lfs
+    git lfs install
+
+    git lfs track "*.jpg"
+    git lfs track "*.jpeg"
+    git lfs track "*.png"
+    git lfs track "*.svg"
+
+    git add .gitattributes
+
+    git rm --cached -r src/assets
+
+    ** Se outra pessoa for clonar o projeto, ela também precisa ter o Git LFS
+    instalado — senão só verá ponteiros de texto no lugar das imagens.
+  }
+
   ### - MATERIAL UI ICONS {
     npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
   }

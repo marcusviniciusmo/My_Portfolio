@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CertificateProps } from '.';
+import { CertificateProps } from '../../@types/certificates';
 import { ThemesNames } from '../../enums/ThemeSwitcher';
 
 const shouldForwardProp = (prop: string) =>

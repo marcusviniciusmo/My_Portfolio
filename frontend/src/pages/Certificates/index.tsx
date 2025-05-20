@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { CertificateType } from '../../@types/certificates';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import { CertificatesContainer, Content, Certificate, Image, Title } from './styles';
@@ -32,26 +33,6 @@ import SpringReactWeekDsMovie from '../../assets/certificates/_SpringReactWeek_D
 import SpringReactWeeKDsVendas from '../../assets/certificates/_SpringReactWeek_DSVendas.png';
 import TechnologicalDevelopment from '../../assets/certificates/_TechnologicalDevelopment.png';
 import Word2016 from '../../assets/certificates/_Word2016.jpeg';
-
-export interface CertificateType {
-  id: string;
-  name: string;
-  image: string;
-  workload?: string;
-  instructor?: string;
-  institution?: string;
-  conclusion: string;
-  type: 'Graduation' | 'Certification' | 'Certificate';
-  score?: string;
-  sharingLink?: string;
-  area: string;
-}
-
-export interface CertificateProps {
-  borderColor: string;
-  isListInHover: boolean;
-  isItemInHover: boolean;
-}
 
 export const CertificatesList: CertificateType[] = [
   {

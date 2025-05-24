@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ProjectsProps } from '.';
+import { ProjectsProps } from '../../@types/projects';
 import { ThemesNames } from '../../enums/ThemeSwitcher';
 
 const shouldForwardProp = (prop: string) =>

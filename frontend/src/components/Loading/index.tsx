@@ -1,3 +1,9 @@
+import { LoadingContainer, Spinner } from "./styles";
+
 export function Loading() {
-  return <h1>LOADING COMPONENT</h1>
+  return (
+    <LoadingContainer>
+      <Spinner />
+    </LoadingContainer>
+  )
 }

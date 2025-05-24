@@ -2,14 +2,10 @@ import { useEffect, useState } from 'react';
 import { GitHub, Tv } from '@mui/icons-material';
 import { TitlePage } from '../../components/TitlePage';
 import { ProjectType, ProjectTypeFromApi } from '../../@types/projects';
+import { projectImages } from '../../data/Projects';
 import { setBorderColor, getIndexMap } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import * as Styles from './styles';
-import ImageCode from '../../assets/projects/_image_code.png';
-
-const projectImages: { [key: string]: string } = {
-  '242527561': ImageCode,
-};
 
 export function Projects() {
   const [projectsList, setProjectsList] = useState<ProjectType[]>([]);

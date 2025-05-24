@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { GitHub, Tv } from '@mui/icons-material';
+import { toast } from 'react-toastify';
 import { TitlePage } from '../../components/TitlePage';
+import { Loading } from '../../components/Loading';
 import { ProjectType, ProjectTypeFromApi } from '../../@types/projects';
 import { projectImages } from '../../data/Projects';
 import { setBorderColor, getIndexMap } from '../../utils/Functions';
@@ -9,6 +11,7 @@ import * as Styles from './styles';
 
 export function Projects() {
   const [projectsList, setProjectsList] = useState<ProjectType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(new Map());
@@ -22,11 +25,18 @@ export function Projects() {
     fetch(`${baseUrl}/${username}/repos?${perPage}&${page}`)
       .then((response) => response.json())
       .then((data) => {
+        setIsLoading(true);
         const formattedData = getFormattedProjects(data);
 
         const sortedData = getSortedProjects(formattedData);
 
         setProjectsList(sortedData)
+      })
+      .catch((error) => {
+        toast.error(`Error! ${error}.`);
+      })
+      .finally(() => {
+        setIsLoading(false);
       })
   }, []);
 
@@ -72,50 +82,57 @@ export function Projects() {
     <Styles.ProjectsContainer>
       <TitlePage title="Projects" />
 
-      <Styles.Content
-        onMouseEnter={() => handleMouseEnterList(true)}
-        onMouseLeave={() => handleMouseEnterList(false)}
-      >
-        {
-          projectsList.map((project) => {
-            return (
-              <Styles.Project
-                key={project.id}
-                title={project.name}
-                borderColor={getBorderColor(project.id)}
-                isListInHover={isListInHover}
-                isItemInHover={isItemInHover === project.id}
-                onMouseEnter={() => handleMouseEnterItem(project.id)}
-                onMouseLeave={() => handleMouseEnterItem(null)}
-              >
-                <Styles.Image>
-                  <img src={project.image} alt={`${project.name} image`} />
-                </Styles.Image>
-
-                <Styles.Name>{project.name}</Styles.Name>
-
-                <Styles.Links>
-                  <Styles.Repository
-                    href={project.urlRepository}
-                    target='_blank'
-                    title='View Repository'
+      {
+        isLoading ? (
+          <Loading />
+        ) : (
+          <Styles.Content
+            onMouseEnter={() => handleMouseEnterList(true)}
+            onMouseLeave={() => handleMouseEnterList(false)}
+          >
+            {
+              projectsList.map((project) => {
+                return (
+                  <Styles.Project
+                    key={project.id}
+                    title={project.name}
+                    borderColor={getBorderColor(project.id)}
+                    isListInHover={isListInHover}
+                    isItemInHover={isItemInHover === project.id}
+                    onMouseEnter={() => handleMouseEnterItem(project.id)}
+                    onMouseLeave={() => handleMouseEnterItem(null)}
                   >
-                    <GitHub fontSize='large' />
-                  </Styles.Repository>
+                    <Styles.Image>
+                      <img src={project.image} alt={`${project.name} image`} />
+                    </Styles.Image>
 
-                  <Styles.Url
-                    href={project.url}
-                    target='_blank'
-                    title='View Project'
-                  >
-                    <Tv fontSize='large' />
-                  </Styles.Url>
-                </Styles.Links>
-              </Styles.Project>
-            )
-          })
-        }
-      </Styles.Content>
+                    <Styles.Name>{project.name}</Styles.Name>
+
+                    <Styles.Links>
+                      <Styles.Repository
+                        href={project.urlRepository}
+                        target='_blank'
+                        title='View Repository'
+                      >
+                        <GitHub fontSize='large' />
+                      </Styles.Repository>
+
+                      <Styles.Url
+                        href={project.url}
+                        target='_blank'
+                        title='View Project'
+                      >
+                        <Tv fontSize='large' />
+                      </Styles.Url>
+                    </Styles.Links>
+                  </Styles.Project>
+                )
+              })
+            }
+          </Styles.Content>
+        )
+      }
+
     </Styles.ProjectsContainer>
   );
 }

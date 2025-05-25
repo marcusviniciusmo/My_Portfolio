@@ -12,6 +12,7 @@ export const GlobalStyle = createGlobalStyle`
     --boxShadow:
       0 0 5px ${({ theme }) => theme.styles.primaryColor},
       0 0 5px ${({ theme }) => theme.styles.primaryColor};
+    --colorResumeIcon: #F95054;
     --gradientBackgroundFrom: #FA5252;
     --gradientBackgroundTo: #DD2476;
     --borderColor1: #FCF4FF;

@@ -1,42 +1,10 @@
 import { useEffect, useState } from 'react';
 import { SchoolOutlined, WorkOutline } from '@mui/icons-material';
 import { TitlePage } from '../../components/TitlePage';
+import { EducationType, ExperienceType, WorkingSkillType, KnowledgeType } from '../../@types/resume';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import * as Styles from './styles';
-
-export interface ResumeCard {
-  id: string;
-  period: {
-    start: Date;
-    end: Date;
-  };
-  title: string;
-  institution: string;
-}
-
-export interface EducationType extends ResumeCard { };
-
-export interface ExperienceType extends ResumeCard { };
-
-export interface WorkingSkillType {
-  id: string;
-  description: string;
-  percentage: number;
-};
-
-export interface KnowledgeType {
-  id: string;
-  description: string;
-};
-
-export interface ResumeCardProps {
-  borderColor: string;
-}
-
-export interface WorkingSkillProps {
-  percentage: number;
-}
 
 export const EducationList: EducationType[] = [
   {

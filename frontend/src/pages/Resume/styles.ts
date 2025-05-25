@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ThemesNames } from '../../enums/ThemeSwitcher';
-import { ResumeCardProps, WorkingSkillProps } from '.';
+import { ResumeCardProps, WorkingSkillProps } from '../../@types/resume';
 
 const shouldForwardProp = (props: string) =>
   !['borderColor', 'percentage'].includes(props);

@@ -5,6 +5,8 @@ export const borderColors = [
   'var(--borderColor1)',
   'var(--borderColor2)',
   'var(--borderColor3)',
+  'var(--borderColor4)',
+  'var(--borderColor5)',
 ];
 
 export const GlobalStyle = createGlobalStyle`
@@ -16,8 +18,10 @@ export const GlobalStyle = createGlobalStyle`
     --gradientBackgroundFrom: #FA5252;
     --gradientBackgroundTo: #DD2476;
     --borderColor1: #FCF4FF;
-    --borderColor2: #EEFBFF;
-    --borderColor3: #FFF0F0;
+    --borderColor2: #FFF0F8;
+    --borderColor3: #EEFBFF;
+    --borderColor4: #FEFAF0;
+    --borderColor5: #FFF0F0;
     --max-z-index: 999;
     font-size: 62.5%; /* 1rem = 10px */
   }

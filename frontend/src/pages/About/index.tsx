@@ -7,27 +7,11 @@ import {
   ViewKanban,
   ThumbUpAltOutlined,
 } from '@mui/icons-material';
-import { SvgIconTypeMap } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { TitlePage } from '../../components/TitlePage';
+import { ExpertiseType } from '../../@types/about';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import * as Styles from './styles';
-
-export interface ExpertiseType {
-  id: string;
-  title: string;
-  text: string;
-  color: string;
-  icon: OverridableComponent<SvgIconTypeMap<object, 'svg'>> & {
-    muiName: string;
-  };
-}
-
-export interface ExpertiseCardProps {
-  color: string;
-  borderColor: string;
-}
 
 export const ExpertisesList: ExpertiseType[] = [
   {

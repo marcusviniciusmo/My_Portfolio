@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ThemesNames } from '../../enums/ThemeSwitcher';
-import { ExpertiseCardProps } from '.';
+import { ExpertiseCardProps } from '../../@types/about';
 
 const shouldForwardProp = (props: string) => 
   !['borderColor', 'color'].includes(props);

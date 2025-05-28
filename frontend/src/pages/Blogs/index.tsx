@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { Filter } from '../../components/Filter';
 import { blogsData } from '../../data/Blogs';
 import { BlogType } from '../../@types/blogs';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
@@ -39,6 +40,8 @@ export function Blogs() {
   return (
     <BlogsContainer>
       <TitlePage title="Blogs" />
+
+      <Filter />
 
       <Content
         onMouseEnter={() => handleMouseEnterList(true)}

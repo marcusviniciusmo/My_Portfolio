@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { GitHub, Tv } from '@mui/icons-material';
 import { toast } from 'react-toastify';
 import { TitlePage } from '../../components/TitlePage';
+import { Filter } from '../../components/Filter';
 import { Loading } from '../../components/Loading';
 import { ProjectType, ProjectTypeFromApi } from '../../@types/projects';
 import { projectImages } from '../../data/Projects';
@@ -81,6 +82,8 @@ export function Projects() {
   return (
     <Styles.ProjectsContainer>
       <TitlePage title="Projects" />
+
+      <Filter />
 
       {
         isLoading ? (

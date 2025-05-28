@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
+import { Filter } from '../../components/Filter';
 import { CertificatesData } from '../../data/Certificates';
 import { CertificateType } from '../../@types/certificates';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
@@ -37,6 +38,8 @@ export function Certificates() {
   return (
     <CertificatesContainer>
       <TitlePage title="Certificates" />
+
+      <Filter />
 
       <Content
         onMouseEnter={() => handleMouseEnterList(true)}

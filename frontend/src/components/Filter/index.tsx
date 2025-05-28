@@ -1,3 +1,11 @@
+import { Search } from "@mui/icons-material";
+import { FilterContainer, InputSearch } from "./styles";
+
 export function Filter() {
-  return <h1>FILTER COMPONENT</h1>
+  return (
+    <FilterContainer>
+      <Search fontSize="large" />
+      <InputSearch type="text" placeholder="Search" />
+    </FilterContainer>
+  );
 }

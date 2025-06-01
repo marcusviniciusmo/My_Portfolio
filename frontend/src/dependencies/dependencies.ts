@@ -35,6 +35,10 @@
     npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
   }
 
+  ### - POLISHED {
+    npm install polished
+  }
+
     ### - REACT ROUTER DOM {
     npm i react-router-dom
   }

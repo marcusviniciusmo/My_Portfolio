@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
 import { Filter } from '../../components/Filter';
+import { CertificatesModal } from '../../modals/Certificates';
 import { CertificatesData } from '../../data/Certificates';
 import { CertificateType } from '../../@types/certificates';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
@@ -12,6 +13,7 @@ export function Certificates() {
   const [certificatesFiltered, setCertificatesFiltered] = useState<CertificateType[]>(certificatesList);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<CertificateType | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
@@ -36,6 +38,10 @@ export function Certificates() {
     setIsItemInHover(itemId)
   }
 
+  function selectCertificate(certificate: CertificateType | null) {
+    setSelectedCertificate(certificate);
+  }
+
   return (
     <CertificatesContainer>
       <TitlePage title="Certificates" />
@@ -57,6 +63,7 @@ export function Certificates() {
                 onMouseEnter={() => handleMouseEnterItem(certificate.id)}
                 onMouseLeave={() => handleMouseEnterItem(null)}
                 title={`${certificate.name} certificate`}
+                onClick={() => selectCertificate(certificate)}
               >
                 <Image
                   src={certificate.image}
@@ -68,6 +75,14 @@ export function Certificates() {
           })
         }
       </Content>
+
+      {
+        selectedCertificate && (
+          <CertificatesModal
+            toggleOpenModal={() => selectCertificate(null)}
+          />
+        )
+      }
     </CertificatesContainer>
   );
 }

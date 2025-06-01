@@ -9,6 +9,7 @@ import { CertificatesContainer, Content, Certificate, Image, Title } from './sty
 
 export function Certificates() {
   const [certificatesList, setCertificatesList] = useState<CertificateType[] | []>(CertificatesData);
+  const [certificatesFiltered, setCertificatesFiltered] = useState<CertificateType[]>(certificatesList);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(new Map());
@@ -39,14 +40,14 @@ export function Certificates() {
     <CertificatesContainer>
       <TitlePage title="Certificates" />
 
-      <Filter />
+      <Filter list={certificatesList} setListFiltered={setCertificatesFiltered} />
 
       <Content
         onMouseEnter={() => handleMouseEnterList(true)}
         onMouseLeave={() => handleMouseEnterList(false)}
       >
         {
-          certificatesList.map((certificate) => {
+          certificatesFiltered.map((certificate) => {
             return (
               <Certificate
                 key={certificate.id}

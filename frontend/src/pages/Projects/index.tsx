@@ -12,6 +12,7 @@ import * as Styles from './styles';
 
 export function Projects() {
   const [projectsList, setProjectsList] = useState<ProjectType[]>([]);
+  const [projectsFiltered, setProjectsFiltered] = useState<ProjectType[]>(projectsList);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
@@ -83,7 +84,7 @@ export function Projects() {
     <Styles.ProjectsContainer>
       <TitlePage title="Projects" />
 
-      <Filter />
+      <Filter list={projectsList} setListFiltered={setProjectsFiltered} />
 
       {
         isLoading ? (
@@ -94,7 +95,7 @@ export function Projects() {
             onMouseLeave={() => handleMouseEnterList(false)}
           >
             {
-              projectsList.map((project) => {
+              projectsFiltered.map((project) => {
                 return (
                   <Styles.Project
                     key={project.id}

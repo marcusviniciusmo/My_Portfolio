@@ -17,3 +17,10 @@ export const InputSearch = styled.input`
   flex: 1;
   outline: none;
 `;
+
+export const Results = styled.span`
+  font-size: 1.4rem;
+  font-style: italic;
+  margin-top: 1.5rem;
+  display: block;
+`;

@@ -9,6 +9,7 @@ import { BlogsContainer, Content, Blog, Box, Image, Name } from './styles';
 
 export function Blogs() {
   const [blogsList, setBlogsList] =  useState<BlogType[] | []>(blogsData);
+  const [blogsFiltered, setBlogsFiltered] =  useState<BlogType[]>(blogsList);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(
@@ -41,14 +42,14 @@ export function Blogs() {
     <BlogsContainer>
       <TitlePage title="Blogs" />
 
-      <Filter />
+      <Filter list={blogsList} setListFiltered={setBlogsFiltered} />
 
       <Content
         onMouseEnter={() => handleMouseEnterList(true)}
         onMouseLeave={() => handleMouseEnterList(false)}
       >
         {
-          blogsList.map((blog) => {
+          blogsFiltered.map((blog) => {
             return (
               <Blog
                 key={blog.id}

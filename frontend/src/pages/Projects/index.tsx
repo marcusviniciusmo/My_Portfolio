@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { TitlePage } from '../../components/TitlePage';
 import { Filter } from '../../components/Filter';
 import { Loading } from '../../components/Loading';
+import { ProjectsModal } from '../../modals/Projects';
 import { ProjectType, ProjectTypeFromApi } from '../../@types/projects';
 import { projectImages } from '../../data/Projects';
 import { setBorderColor, getIndexMap } from '../../utils/Functions';
@@ -16,6 +17,7 @@ export function Projects() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(new Map());
 
   const baseUrl = 'https://api.github.com/users';
@@ -80,6 +82,10 @@ export function Projects() {
     setIsItemInHover(itemId)
   }
 
+  function selectProject(project: ProjectType) {
+    setSelectedProject(project);
+  }
+
   return (
     <Styles.ProjectsContainer>
       <TitlePage title="Projects" />
@@ -105,6 +111,7 @@ export function Projects() {
                     isItemInHover={isItemInHover === project.id}
                     onMouseEnter={() => handleMouseEnterItem(project.id)}
                     onMouseLeave={() => handleMouseEnterItem(null)}
+                    onClick={() => selectProject(project)}
                   >
                     <Styles.Image>
                       <img src={project.image} alt={`${project.name} image`} />
@@ -134,6 +141,14 @@ export function Projects() {
               })
             }
           </Styles.Content>
+        )
+      }
+
+      {
+        selectedProject && (
+          <ProjectsModal
+            toggleOpenModal={() => setSelectedProject(null)}
+          />
         )
       }
 

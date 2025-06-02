@@ -1,11 +1,6 @@
 import { Close, School } from '@mui/icons-material';
-import { CertificateType } from '../../@types/certificates';
+import { CertificatesModalProps } from '../../@types/certificatesModal';
 import * as Styles from './styles';
-
-interface CertificatesModalProps {
-  certificate: CertificateType;
-  toggleOpenModal: () => void;
-}
 
 export function CertificatesModal({
   certificate,

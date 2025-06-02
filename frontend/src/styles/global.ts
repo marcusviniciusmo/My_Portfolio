@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { transparentize } from 'polished';
 import { setBackgroundToGradient } from '../utils/Functions';
 
 export const borderColors = [
@@ -114,5 +115,18 @@ export const GlobalStyle = createGlobalStyle`
       ${setBackgroundToGradient()};
       color: ${({ theme }) => theme.defaultStyles.baseColor};
     }
+  }
+
+  &.modalOverlay {
+    background: ${({ theme }) => transparentize(0.2, theme.styles.secondaryBackground)};
+    z-index: var(--max-z-index);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
 `;

@@ -26,6 +26,16 @@ export function Certificates() {
     setIndexMap(map);
   }, [])
 
+  useEffect(() => {
+    if (selectedCertificate) {
+      document.body.style.overflow = 'hidden';
+    };
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedCertificate]);
+
   function getBorderColor(itemId: string) {
     return setBorderColor(borderColors, indexMap, itemId)
   }
@@ -79,6 +89,7 @@ export function Certificates() {
       {
         selectedCertificate && (
           <CertificatesModal
+            certificate={selectedCertificate}
             toggleOpenModal={() => selectCertificate(null)}
           />
         )

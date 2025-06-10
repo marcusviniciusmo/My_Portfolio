@@ -1,11 +1,6 @@
 import { Terminal, Close, RocketLaunch, Code, Image } from '@mui/icons-material';
-import { ProjectType } from '../../@types/projects';
+import { ProjectsModalProps } from '../../@types/projectsModal';
 import * as Styles from './styles';
-
-interface ProjectsModalProps {
-  project: ProjectType;
-  toggleOpenModal: () => void;
-}
 
 export function ProjectsModal({
   project,
@@ -76,7 +71,7 @@ export function ProjectsModal({
 
           <Styles.ModalFooter>
             {
-              project.technologies.map((tech, index) => {
+              project.technologies.map((tech: string, index: number) => {
                 return (
                   <Styles.ModalTechnologyContainer key={index}>
                     {tech}

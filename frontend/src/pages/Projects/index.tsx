@@ -147,6 +147,7 @@ export function Projects() {
       {
         selectedProject && (
           <ProjectsModal
+            project={selectedProject}
             toggleOpenModal={() => setSelectedProject(null)}
           />
         )

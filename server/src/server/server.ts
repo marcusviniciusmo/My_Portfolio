@@ -2,10 +2,183 @@ import express from 'express';
 
 const app = express();
 
-app.get('/', (request, response) => {
+app.get('/blogs/:userId', (request, response) => {
   return response.json({
-    id: 1,
-    message: 'Hello World',
+    message: 'Get blogs',
+  });
+});
+
+app.post('/blogs/:userId', (request, response) => {
+  return response.json({
+    message: 'Post blogs',
+  });
+});
+
+app.get('/certificates/:userId', (request, response) => {
+  return response.json({
+    message: 'Get certificates',
+  });
+});
+
+app.post('/certificates/:userId', (request, response) => {
+  return response.json({
+    message: 'Post certificates',
+  });
+});
+
+app.get('/certificateAreas', (request, response) => {
+  return response.json({
+    message: 'Get certificate areas',
+  });
+});
+
+app.post('/certificateAreas', (request, response) => {
+  return response.json({
+    message: 'Post certificate areas',
+  });
+});
+
+app.get('/certificateTypes', (request, response) => {
+  return response.json({
+    message: 'Get certificate types',
+  });
+});
+
+app.post('/certificateTypes', (request, response) => {
+  return response.json({
+    message: 'Post certificate types',
+  });
+});
+
+app.get('/education/:userId', (request, response) => {
+  return response.json({
+    message: 'Get education',
+  });
+});
+
+app.post('/education/:userId', (request, response) => {
+  return response.json({
+    message: 'Post education',
+  });
+});
+
+app.get('/experiences/:userId', (request, response) => {
+  return response.json({
+    message: 'Get experiences',
+  });
+});
+
+app.post('/experiences/:userId', (request, response) => {
+  return response.json({
+    message: 'Post experiences',
+  });
+});
+
+app.get('/expertises/:userId', (request, response) => {
+  return response.json({
+    message: 'Get expertises',
+  });
+});
+
+app.post('/expertises/:userId', (request, response) => {
+  return response.json({
+    message: 'Post expertises',
+  });
+});
+
+app.get('/knowledges/:userId', (request, response) => {
+  return response.json({
+    message: 'Get knowledges',
+  });
+});
+
+app.post('/knowledges/:userId', (request, response) => {
+  return response.json({
+    message: 'Post knowledges',
+  });
+});
+
+app.get('/menuItems/:userId', (request, response) => {
+  return response.json({
+    message: 'Get menu items',
+  });
+});
+
+app.post('/menuItems/:userId', (request, response) => {
+  return response.json({
+    message: 'Post menu items',
+  });
+});
+
+app.get('/networks/:userId', (request, response) => {
+  return response.json({
+    message: 'Get networks',
+  });
+});
+
+app.post('/networks/:userId', (request, response) => {
+  return response.json({
+    message: 'Post networks',
+  });
+});
+
+app.get('/profile/:userId', (request, response) => {
+  return response.json({
+    message: 'Get profile',
+  });
+});
+
+app.post('/profile', (request, response) => {
+  return response.json({
+    message: 'Post profile',
+  });
+});
+
+app.get('/profileInfo/:userId', (request, response) => {
+  return response.json({
+    message: 'Get profile info',
+  });
+});
+
+app.post('/profileInfo/:userId', (request, response) => {
+  return response.json({
+    message: 'Post profile info',
+  });
+});
+
+app.get('/projects/:userId', (request, response) => {
+  return response.json({
+    message: 'Get projects',
+  });
+});
+
+app.post('/projects/:userId', (request, response) => {
+  return response.json({
+    message: 'Post projects',
+  });
+});
+
+app.get('/testimonials/:userId', (request, response) => {
+  return response.json({
+    message: 'Get testimonials',
+  });
+});
+
+app.post('/testimonials/:userId', (request, response) => {
+  return response.json({
+    message: 'Post testimonials',
+  });
+});
+
+app.get('/workingSkills/:userId', (request, response) => {
+  return response.json({
+    message: 'Get working skills',
+  });
+});
+
+app.post('/workingSkills/:userId', (request, response) => {
+  return response.json({
+    message: 'Post working skills',
   });
 });
 

@@ -6,6 +6,10 @@
     npm install @types/express -D
   }
 
+  ### - PRISMA {
+    npm i prisma -D
+  }
+
   ### - NODE {
     npm init -y
   }

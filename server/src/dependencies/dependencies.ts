@@ -6,12 +6,16 @@
     npm install @types/express -D
   }
 
-  ### - PRISMA {
-    npm i prisma -D
+  ### - MySQL {
+    npx prisma init --datasource-provider SQLite
   }
-
+  
   ### - NODE {
     npm init -y
+  }
+
+  ### - PRISMA {
+    npm i prisma -D
   }
 
   ### - TYPESCRIPT {

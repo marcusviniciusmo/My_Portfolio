@@ -3,6 +3,7 @@
 
   ### - EXPRESS {
     npm i express
+    npm install @types/express -D
   }
 
   ### - NODE {

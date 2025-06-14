@@ -9,9 +9,17 @@ export function ThrowControllerException(
 ) {
   let statusCode = 500;
 
-  error = new Exception.Controller(route, { userId });
+  const isServiceException = error instanceof Exception.Service;
+
+  if (!isServiceException) {
+    error = new Exception.Controller(route, { userId });
+  }
 
   console.log(error);
 
   return response.status(statusCode).json(error);
+}
+
+export function ThrowServiceException(route: string, userId?: string) {
+  throw new Exception.Service(route, { userId });
 }

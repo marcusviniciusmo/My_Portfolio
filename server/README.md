@@ -27,6 +27,10 @@ area (FK)
 area_ID (PK)
 areaDescription
 
+## - Certificate Types
+type_ID (PK)
+typeDescription
+
 ## - Education
 education_ID (PK)
 user_ID (FK)
@@ -48,6 +52,10 @@ title
 text
 color
 icon
+
+### - Icons
+icon_ID
+description
 
 ## - Knowledges
 knowledge_ID (PK)
@@ -113,6 +121,7 @@ percentage
 list of blogs
 list of certificates
 list of certificates areas
+list of certificates types
 list of menu items
 list of education
 list of experiences

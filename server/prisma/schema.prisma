@@ -10,3 +10,123 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+model Blogs {
+  blog_ID String @id
+  user_ID String
+  name    String
+  image   String
+  url     String
+}
+
+model Certificates {
+  certificate_ID  String @id
+  user_ID         String
+  name            String
+  image           String
+  workload        String?
+  instructor      String?
+  institution     String?
+  conclusion      String
+  type            String
+  score           String?
+  sharingLink     String?
+  area            String
+}
+
+model CertificateAreas {
+  area_ID         String @id
+  areaDescription String
+}
+
+model CertificateTypes {
+  type_ID         String @id
+  typeDescription String
+}
+
+model Education {
+  education_ID  String @id
+  user_ID       String
+  periodStart   DateTime
+  periodEnd     DateTime
+  title         String
+  institution   String
+}
+
+model Experiences {
+  experience_ID String @id
+  user_ID       String
+  periodStart   DateTime
+  periodEnd     DateTime
+  title         String
+  institution   String
+}
+
+model Expertises {
+  expertise_ID  String @id
+  user_ID       String
+  title         String
+  text          String
+  color         String
+  icon          String
+}
+
+model Icons {
+  icon_ID         String @id
+  description String
+}
+
+model Knowledges {
+  knowledge_ID  String @id
+  user_ID       String
+  description   String
+}
+
+model MenuItems {
+  menuItem_ID String @id
+  user_ID     String
+  label       String
+  icon        String
+  to          String
+}
+
+model Networks {
+  network_ID  String @id
+  user_ID     String
+  title       String
+  link        String
+  icon        String
+}
+
+model Profile {
+  user_ID     String @id
+  name        String
+  role        String
+  image       String
+  curriculum  String
+}
+
+model ProfileInfo {
+  profileInfo_ID  String @id
+  user_ID         String
+  label           String
+  link            String?
+  data            String
+  icon            String
+}
+
+model Testimonials {
+  testimonial_ID  String @id
+  user_ID         String
+  name            String
+  role            String
+  image           String
+  quote           String
+}
+
+model Skills {
+  skill_ID    String @id
+  user_ID     String
+  description String
+  percentage  Int
+}

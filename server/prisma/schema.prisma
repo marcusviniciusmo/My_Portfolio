@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Blogs {
-  blog_ID String @id
+  blog_ID String @id @default(uuid())
   user_ID String
   name    String
   image   String
@@ -21,7 +21,7 @@ model Blogs {
 }
 
 model Certificates {
-  certificate_ID  String @id
+  certificate_ID  String @id @default(uuid())
   user_ID         String
   name            String
   image           String
@@ -39,19 +39,19 @@ model Certificates {
 }
 
 model CertificateAreas {
-  area_ID         String @id
+  area_ID         String @id @default(uuid())
   areaDescription String
   certificates    Certificates[]
 }
 
 model CertificateTypes {
-  type_ID         String @id
+  type_ID         String @id @default(uuid())
   typeDescription String
   certificates    Certificates[]
 }
 
 model Education {
-  education_ID  String @id
+  education_ID  String @id @default(uuid())
   user_ID       String
   periodStart   DateTime
   periodEnd     DateTime
@@ -61,7 +61,7 @@ model Education {
 }
 
 model Experiences {
-  experience_ID String @id
+  experience_ID String @id @default(uuid())
   user_ID       String
   periodStart   DateTime
   periodEnd     DateTime
@@ -71,7 +71,7 @@ model Experiences {
 }
 
 model Expertises {
-  expertise_ID  String @id
+  expertise_ID  String @id @default(uuid())
   user_ID       String
   title         String
   text          String
@@ -82,7 +82,7 @@ model Expertises {
 }
 
 model Icons {
-  icon_ID     String @id
+  icon_ID     String @id @default(uuid())
   description String
   expertises  Expertises[]
   menuItems   MenuItems[]
@@ -91,14 +91,14 @@ model Icons {
 }
 
 model Knowledges {
-  knowledge_ID  String @id
+  knowledge_ID  String @id @default(uuid())
   user_ID       String
   description   String
   profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model MenuItems {
-  menuItem_ID String @id
+  menuItem_ID String @id @default(uuid())
   user_ID     String
   label       String
   icon        String
@@ -108,7 +108,7 @@ model MenuItems {
 }
 
 model Networks {
-  network_ID  String @id
+  network_ID  String @id @default(uuid())
   user_ID     String
   title       String
   link        String
@@ -118,7 +118,7 @@ model Networks {
 }
 
 model Profile {
-  user_ID         String @id
+  user_ID         String @id @default(uuid())
   name            String
   role            String
   image           String
@@ -137,7 +137,7 @@ model Profile {
 }
 
 model ProfileInfo {
-  profileInfo_ID  String @id
+  profileInfo_ID  String @id @default(uuid())
   user_ID         String
   label           String
   link            String?
@@ -148,7 +148,7 @@ model ProfileInfo {
 }
 
 model Testimonials {
-  testimonial_ID  String @id
+  testimonial_ID  String @id @default(uuid())
   user_ID         String
   name            String
   role            String
@@ -158,7 +158,7 @@ model Testimonials {
 }
 
 model Skills {
-  skill_ID    String @id
+  skill_ID    String @id @default(uuid())
   user_ID     String
   description String
   percentage  Int

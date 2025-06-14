@@ -1,6 +1,11 @@
 /*
   DEPENDENCIES
 
+  ### - CORS {
+    npm i cors
+    npm install @types/cors -D
+  }
+
   ### - EXPRESS {
     npm i express
     npm install @types/express -D

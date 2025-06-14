@@ -17,6 +17,7 @@ model Blogs {
   name    String
   image   String
   url     String
+  profile Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model Certificates {
@@ -32,16 +33,21 @@ model Certificates {
   score           String?
   sharingLink     String?
   area            String
+  profile         Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  area_ID          CertificateAreas @relation(fields: [area], references: [area_ID], onDelete: Cascade)
+  type_ID           CertificateTypes @relation(fields: [type], references: [type_ID], onDelete: Cascade)
 }
 
 model CertificateAreas {
   area_ID         String @id
   areaDescription String
+  certificates    Certificates[]
 }
 
 model CertificateTypes {
   type_ID         String @id
   typeDescription String
+  certificates    Certificates[]
 }
 
 model Education {
@@ -51,6 +57,7 @@ model Education {
   periodEnd     DateTime
   title         String
   institution   String
+  profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model Experiences {
@@ -60,6 +67,7 @@ model Experiences {
   periodEnd     DateTime
   title         String
   institution   String
+  profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model Expertises {
@@ -69,17 +77,24 @@ model Expertises {
   text          String
   color         String
   icon          String
+  profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  icon_ID       Icons @relation(fields: [icon], references: [icon_ID], onDelete: Cascade)
 }
 
 model Icons {
-  icon_ID         String @id
+  icon_ID     String @id
   description String
+  expertises  Expertises[]
+  menuItems   MenuItems[]
+  networks    Networks[]
+  profileInfo ProfileInfo[]
 }
 
 model Knowledges {
   knowledge_ID  String @id
   user_ID       String
   description   String
+  profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model MenuItems {
@@ -88,6 +103,8 @@ model MenuItems {
   label       String
   icon        String
   to          String
+  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  icon_ID     Icons @relation(fields: [icon], references: [icon_ID], onDelete: Cascade)
 }
 
 model Networks {
@@ -96,14 +113,27 @@ model Networks {
   title       String
   link        String
   icon        String
+  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  icon_ID     Icons @relation(fields: [icon], references: [icon_ID], onDelete: Cascade)
 }
 
 model Profile {
-  user_ID     String @id
-  name        String
-  role        String
-  image       String
-  curriculum  String
+  user_ID         String @id
+  name            String
+  role            String
+  image           String
+  curriculum      String
+  blogs           Blogs[]
+  certificates    Certificates[]
+  education       Education[]
+  experiences     Experiences[]
+  expertises      Expertises[]
+  knowledges      Knowledges[]
+  menuItems       MenuItems[]
+  profileInfo     ProfileInfo[]
+  networks        Networks[]
+  testimonials    Testimonials[]
+  workingSkills   Skills[]
 }
 
 model ProfileInfo {
@@ -113,6 +143,8 @@ model ProfileInfo {
   link            String?
   data            String
   icon            String
+  profile         Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  icon_ID         Icons @relation(fields: [icon], references: [icon_ID], onDelete: Cascade)
 }
 
 model Testimonials {
@@ -122,6 +154,7 @@ model Testimonials {
   role            String
   image           String
   quote           String
+  profile         Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model Skills {
@@ -129,4 +162,5 @@ model Skills {
   user_ID     String
   description String
   percentage  Int
+  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }

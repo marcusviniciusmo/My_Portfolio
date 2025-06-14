@@ -6,6 +6,10 @@
     npm install @types/cors -D
   }
 
+  ### - DOTENV {
+    npm i dotenv
+  }
+
   ### - EXPRESS {
     npm i express
     npm install @types/express -D

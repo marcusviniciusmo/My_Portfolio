@@ -1,6 +1,18 @@
 import express from 'express';
 
+import cors from 'cors';
+
 const app = express();
+
+const environment = process.env.NODE_ENV;
+
+app.use(
+  cors({
+    origin: environment === 'PRODUCTION'
+      ? process.env.BASE_URL_FRONTEND_PRODUCTION
+      : process.env.BASE_URL_FRONTEND_DEVELOPMENT,
+  }),
+);
 
 app.get('/blogs/:userId', (request, response) => {
   return response.json({

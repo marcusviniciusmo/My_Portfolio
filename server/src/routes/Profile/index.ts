@@ -1,7 +1,5 @@
-import { Router } from 'express';
+import { route } from '../../config/Router';
 import { GetProfileByIdController } from '../../controllers/Profile';
-
-const route = Router();
 
 export const GetProfileByIdRoute = route.get(
   '/profile/:userId',

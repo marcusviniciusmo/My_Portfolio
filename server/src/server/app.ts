@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 
-import { GetProfileByIdRoute } from '../routes/Profile';
+import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ export const app = express();
 const environment = process.env.NODE_ENV;
 
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 app.use(
   cors({
     origin:
@@ -21,6 +23,7 @@ app.use(
 
 /* PROFILE */
 app.use(GetProfileByIdRoute);
+app.use(CreateProfileRoute);
 
 app.get('/blogs/:userId', (request, response) => {
   return response.json({
@@ -139,12 +142,6 @@ app.get('/networks/:userId', (request, response) => {
 app.post('/networks/:userId', (request, response) => {
   return response.json({
     message: 'Post networks',
-  });
-});
-
-app.post('/profile', (request, response) => {
-  return response.json({
-    message: 'Post profile',
   });
 });
 

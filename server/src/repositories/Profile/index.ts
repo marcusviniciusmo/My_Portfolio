@@ -21,8 +21,10 @@ export const CreateProfileRepository = async (route: string) => {
   const profileToInsert = GetProfileToInsert();
 
   try {
-    const profileInserted = await prisma.profile.create({
-      data: profileToInsert,
+    const profileInserted = await prisma.$transaction(async tx => {
+      return await tx.profile.create({
+        data: profileToInsert,
+      });
     });
 
     return profileInserted;

@@ -15,6 +15,11 @@
     npm install @types/express -D
   }
 
+  ### - JWT {
+    npm install jsonwebtoken express
+    npm install @types/jsonwebtoken --save-dev
+  }
+
   ### - MySQL {
     npx prisma init --datasource-provider SQLite
   }

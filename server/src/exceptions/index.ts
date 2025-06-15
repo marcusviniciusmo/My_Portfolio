@@ -85,3 +85,12 @@ export class InvalidToken extends Exception {
     super(getMessage, layer, route, params);
   }
 }
+
+export class RestrictWriteRoutes extends Exception {
+  constructor(route: string, params?: any) {
+    const getMessage = Message.RestrictWriteRoutes;
+    const layer = 'RestrictWriteRoute';
+
+    super(getMessage, layer, route, params);
+  }
+}

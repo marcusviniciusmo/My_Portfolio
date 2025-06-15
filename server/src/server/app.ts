@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import { RestrictWriteRoutes } from '../utils/Functions';
 
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
@@ -21,6 +22,8 @@ app.use(
         : process.env.BASE_URL_FRONTEND_DEVELOPMENT,
   }),
 );
+
+app.use(RestrictWriteRoutes);
 
 /* JWT */
 app.use(GenerateJwtTokenRoute);

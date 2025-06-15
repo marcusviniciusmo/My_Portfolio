@@ -1,5 +1,24 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
+import dotenv from 'dotenv';
 import * as Exception from '../../exceptions';
+
+dotenv.config();
+
+export function RestrictWriteRoutes(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) {
+  const isInProductionEnvironment =
+    process.env.NODE_ENV?.toUpperCase() === 'PRODUCTION';
+  const isPostMethod = request.method === 'POST';
+
+  if (isInProductionEnvironment && isPostMethod) {
+    return ThrowRestrictWriteRouteException(response);
+  }
+
+  next();
+}
 
 export function ThrowControllerException(
   error: any,
@@ -72,4 +91,11 @@ export function ThrowInvalidTokenException(
   const error = new Exception.InvalidToken(route);
 
   return response.status(401).json(error);
+}
+
+export function ThrowRestrictWriteRouteException(response: Response) {
+  const route = 'RestrictWrite';
+  const error = new Exception.RestrictWriteRoutes(route);
+
+  return response.status(403).json(error);
 }

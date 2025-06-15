@@ -21,5 +21,13 @@ export const NotFound = {
     `Profile with user ID ${userId} not found.`,
 };
 
+export const AuthenticationFailed = {
+  Authentication: () => `Failed to authenticate the request.`,
+};
+
+export const InvalidToken = {
+  Token: () => `Invalid token.`,
+};
+
 export const Unknown = (layer: string, route: string) =>
   `Unknown error in the layer ${layer} and route ${route}.`;

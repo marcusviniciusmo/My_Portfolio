@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import * as Exception from '../../exceptions';
 
 export function ThrowControllerException(
@@ -45,4 +45,31 @@ export function ThrowRepositoryException(route: string, userId?: string) {
 
 export function ThrowNotFoundException(route: string, userId?: string) {
   throw new Exception.NotFound(route, { userId });
+}
+
+export function ThrowAuthenticationException(error: any, response: Response) {
+  const isInvalidTokenException = error instanceof Exception.InvalidToken;
+
+  if (isInvalidTokenException) {
+    throw error;
+  } else {
+    console.log(error);
+
+    const route = 'Authentication';
+
+    error = new Exception.AuthenticationFailed(route);
+
+    return response.status(401).json(error);
+  }
+}
+
+export function ThrowInvalidTokenException(
+  request: Request,
+  response: Response,
+) {
+  const route = 'Token';
+
+  const error = new Exception.InvalidToken(route);
+
+  return response.status(401).json(error);
 }

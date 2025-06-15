@@ -67,3 +67,21 @@ export class NotFound extends Exception {
     super(getMessage, layer, route, params);
   }
 }
+
+export class AuthenticationFailed extends Exception {
+  constructor(route: string, params?: any) {
+    const getMessage = Message.AuthenticationFailed;
+    const layer = 'AuthenticationFailed';
+
+    super(getMessage, layer, route, params);
+  }
+}
+
+export class InvalidToken extends Exception {
+  constructor(route: string, params?: any) {
+    const getMessage = Message.InvalidToken;
+    const layer = 'InvalidToken';
+
+    super(getMessage, layer, route, params);
+  }
+}

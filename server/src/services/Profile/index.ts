@@ -21,10 +21,12 @@ export const GetProfileByIdService = async (route: string, userId: string) => {
   }
 };
 
-export const CreateProfileService = async () => {
+export const CreateProfileService = async (route: string) => {
   try {
-    const profileInserted = await CreateProfileRepository();
+    const profileInserted = await CreateProfileRepository(route);
 
     return profileInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route);
+  }
 };

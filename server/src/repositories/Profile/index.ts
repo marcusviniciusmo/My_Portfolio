@@ -17,7 +17,7 @@ export const GetProfileByIdRepository = async (
   }
 };
 
-export const CreateProfileRepository = async () => {
+export const CreateProfileRepository = async (route: string) => {
   const profileToInsert = GetProfileToInsert();
 
   try {
@@ -26,5 +26,7 @@ export const CreateProfileRepository = async () => {
     });
 
     return profileInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(route);
+  }
 };

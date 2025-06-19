@@ -11,6 +11,22 @@ export const ProfileContainer = styled.aside.attrs({
   position: relative;
 `;
 
+export const ImageWrapper = styled.div`
+  background: ${({ theme }) => theme.styles.secondaryBackground};
+  width: 24rem;
+  height: 24rem;
+  margin: -14rem auto 0;
+  border-radius: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+  div {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
 export const Image = styled.img`
   box-shadow: ${({ theme }) => theme.styles.shadow};
   width: 24rem;

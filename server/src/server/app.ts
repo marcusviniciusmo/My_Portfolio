@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { RestrictWriteRoutes } from '../utils/Functions';
 
+import { GetBlogsByUserRoute } from '../routes/Blogs';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
@@ -27,17 +28,13 @@ app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.use(RestrictWriteRoutes);
 
+/* BLOGS */
+app.use(GetBlogsByUserRoute);
 /* JWT */
 app.use(GenerateJwtTokenRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.get('/blogs/:userId', (request, response) => {
-  return response.json({
-    message: 'Get blogs',
-  });
-});
 
 app.post('/blogs/:userId', (request, response) => {
   return response.json({

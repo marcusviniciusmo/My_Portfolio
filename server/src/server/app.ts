@@ -13,7 +13,7 @@ export const app = express();
 const environment = process.env.NODE_ENV;
 
 app.use(express.json());
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
 app.use(
   cors({
     origin:
@@ -22,6 +22,8 @@ app.use(
         : process.env.BASE_URL_FRONTEND_DEVELOPMENT,
   }),
 );
+
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.use(RestrictWriteRoutes);
 

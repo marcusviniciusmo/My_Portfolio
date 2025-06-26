@@ -1,4 +1,7 @@
-import { GetProfileByIdRepository } from '../../repositories/Profile';
+import {
+  GetProfileByIdRepository,
+  CreateProfileRepository,
+} from '../../repositories/Profile';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -16,4 +19,12 @@ export const GetProfileByIdService = async (route: string, userId: string) => {
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateProfileService = async () => {
+  try {
+    const profileInserted = await CreateProfileRepository();
+
+    return profileInserted;
+  } catch (error) {}
 };

@@ -1,8 +1,9 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import dotenv from 'dotenv';
 
-import { GetProfileByIdRoute } from '../routes/Profile';
+import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
 
@@ -19,8 +20,11 @@ app.use(
   }),
 );
 
+app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
 /* PROFILE */
 app.use(GetProfileByIdRoute);
+app.use(CreateProfileRoute);
 
 app.get('/blogs/:userId', (request, response) => {
   return response.json({
@@ -139,12 +143,6 @@ app.get('/networks/:userId', (request, response) => {
 app.post('/networks/:userId', (request, response) => {
   return response.json({
     message: 'Post networks',
-  });
-});
-
-app.post('/profile', (request, response) => {
-  return response.json({
-    message: 'Post profile',
   });
 });
 

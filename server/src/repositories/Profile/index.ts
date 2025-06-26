@@ -1,8 +1,4 @@
-import { PrismaClient } from '../../generated/prisma';
-
-const prisma = new PrismaClient({
-  log: ['query'],
-});
+import { prisma } from "../../config/Repository";
 
 export const GetProfileByIdRepository = (userId: string) => {
   try {

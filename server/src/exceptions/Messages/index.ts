@@ -13,5 +13,10 @@ export const Repository = {
     `Failed to fetch profile for user ID ${userId}.`,
 };
 
+export const NotFound = {
+  GetProfileById: ({ userId }: { userId: string }) =>
+    `Profile with user ID ${userId} not found.`,
+};
+
 export const Unknown = (layer: string, route: string) =>
   `Unknown error in the layer ${layer} and route ${route}`;

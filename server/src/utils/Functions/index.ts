@@ -11,8 +11,11 @@ export function ThrowControllerException(
 
   const isServiceException = error instanceof Exception.Service;
   const isRepositoryException = error instanceof Exception.Repository;
+  const isNotFoundException = error instanceof Exception.NotFound;
 
-  if (!isServiceException && !isRepositoryException) {
+  if (isNotFoundException) {
+    statusCode = 404;
+  } else if (!isServiceException && !isRepositoryException) {
     error = new Exception.Controller(route, { userId });
   }
 
@@ -27,8 +30,9 @@ export function ThrowServiceException(
   userId?: string,
 ) {
   const isRepositoryException = error instanceof Exception.Repository;
+  const isNotFoundException = error instanceof Exception.NotFound;
 
-  if (isRepositoryException) {
+  if (isRepositoryException || isNotFoundException) {
     throw error;
   } else {
     throw new Exception.Service(route, { userId });
@@ -37,4 +41,8 @@ export function ThrowServiceException(
 
 export function ThrowRepositoryException(route: string, userId?: string) {
   throw new Exception.Repository(route, { userId });
+}
+
+export function ThrowNotFoundException(route: string, userId?: string) {
+  throw new Exception.NotFound(route, { userId });
 }

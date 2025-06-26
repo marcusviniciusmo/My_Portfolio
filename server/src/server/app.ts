@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+import { GetProfileByIdRoute } from '../routes/Profile';
+
 dotenv.config();
 
 export const app = express();
@@ -10,11 +12,15 @@ const environment = process.env.NODE_ENV;
 app.use(express.json());
 app.use(
   cors({
-    origin: environment === 'PRODUCTION'
-      ? process.env.BASE_URL_FRONTEND_PRODUCTION
-      : process.env.BASE_URL_FRONTEND_DEVELOPMENT,
+    origin:
+      environment === 'PRODUCTION'
+        ? process.env.BASE_URL_FRONTEND_PRODUCTION
+        : process.env.BASE_URL_FRONTEND_DEVELOPMENT,
   }),
 );
+
+/* PROFILE */
+app.use(GetProfileByIdRoute);
 
 app.get('/blogs/:userId', (request, response) => {
   return response.json({
@@ -133,12 +139,6 @@ app.get('/networks/:userId', (request, response) => {
 app.post('/networks/:userId', (request, response) => {
   return response.json({
     message: 'Post networks',
-  });
-});
-
-app.get('/profile/:userId', (request, response) => {
-  return response.json({
-    message: 'Get profile',
   });
 });
 

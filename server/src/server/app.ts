@@ -3,6 +3,7 @@ import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
 
+import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
@@ -22,6 +23,8 @@ app.use(
 
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
+/* JWT */
+app.use(GenerateJwtTokenRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);

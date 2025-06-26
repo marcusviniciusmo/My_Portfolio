@@ -10,7 +10,7 @@ export const GetProfileByIdController = async (
   const route = 'GetProfileById';
 
   try {
-    const profileById = await GetProfileByIdService(userId);
+    const profileById = await GetProfileByIdService(route, userId);
 
     return response.status(200).json(profileById);
   } catch (error) {

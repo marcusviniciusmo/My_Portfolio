@@ -1,16 +1,19 @@
 export const Controller = {
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
+  CreateProfile: () => `Failed to process request to create new profile.`,
 };
 
 export const Service = {
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
+  CreateProfile: () => `Unable to create new profile.`,
 };
 
 export const Repository = {
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
+  CreateProfile: () => `Failed to create new profile.`,
 };
 
 export const NotFound = {

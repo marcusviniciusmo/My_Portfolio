@@ -49,3 +49,12 @@ export class Service extends Exception {
     super(getMessage, layer, route, params);
   }
 }
+
+export class Repository extends Exception {
+  constructor(route: string, params?: any) {
+    const getMessage = Message.Repository;
+    const layer = 'Repository';
+
+    super(getMessage, layer, route, params);
+  }
+}

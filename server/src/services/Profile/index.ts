@@ -3,10 +3,10 @@ import { ThrowServiceException } from '../../utils/Functions';
 
 export const GetProfileByIdService = async (route: string, userId: string) => {
   try {
-    const profileById = await GetProfileByIdRepository(userId);
+    const profileById = await GetProfileByIdRepository(route, userId);
 
     return profileById;
   } catch (error) {
-    ThrowServiceException(route, userId);
+    ThrowServiceException(error, route, userId);
   }
 };

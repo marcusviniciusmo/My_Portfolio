@@ -53,7 +53,7 @@ export function Profile() {
 
       <ProfileInfo />
 
-      <DownloadCV />
+      <DownloadCV name={profile.name} curriculum={profile.curriculum} />
     </Styles.ProfileContainer>
   );
 }

@@ -18,7 +18,3 @@ export const DownloadCVContainer = styled.a`
     ${setBackgroundToGradient('to left')};
   }
 `;
-
-export const File = styled.a`
-  display: none;
-`;

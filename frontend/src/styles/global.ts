@@ -129,4 +129,25 @@ export const GlobalStyle = createGlobalStyle`
     top: 0;
     left: 0;
   }
+
+  &.skeleton {
+    background: ${({ theme }) => theme.styles.secondaryColor};
+    color: ${({ theme }) => theme.styles.secondaryColor};
+    user-select: none;
+    pointer-events: none;
+    border-radius: 2rem;
+    animation: skeletonLoading 1.5s infinite ease-in-out;
+
+    @keyframes skeletonLoading {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
 `;

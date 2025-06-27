@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import dotenv from 'dotenv';
+import { RestrictWriteRoute } from '../utils/Functions';
 
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
@@ -22,6 +23,8 @@ app.use(
 );
 
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+
+app.use(RestrictWriteRoute);
 
 /* JWT */
 app.use(GenerateJwtTokenRoute);

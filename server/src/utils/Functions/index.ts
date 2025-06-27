@@ -1,5 +1,25 @@
-import { Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import * as Exception from '../../exceptions';
+
+export function RestrictWriteRoute(
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) {
+  const isInProductionEnviironment =
+    process.env.NODE_ENV?.toUpperCase() === 'PRODUCTION';
+  const isPostMethod = request.method === 'POST';
+
+  try {
+    if (isInProductionEnviironment && isPostMethod) {
+      throw Error;
+    }
+
+    next();
+  } catch (error) {
+    ThrowRestrictWriteRouteException(error, response);
+  }
+}
 
 export function ThrowControllerException(
   error: any,
@@ -68,4 +88,14 @@ export function ThrowInvalidTokenException() {
   const route = 'InvalidToken';
 
   throw new Exception.InvalidToken(route);
+}
+
+export function ThrowRestrictWriteRouteException(
+  error: any,
+  response: Response,
+) {
+  const route = 'RestrictWriteRoute';
+  error = new Exception.RestrictWriteRoute(route);
+
+  return response.status(403).json(error);
 }

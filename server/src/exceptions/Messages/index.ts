@@ -29,5 +29,10 @@ export const InvalidToken = {
   InvalidToken: () => `Invalid token.`,
 };
 
+export const RestrictWriteRoute = {
+  RestrictWriteRoute: () =>
+    `Write routes are disabled in production environment`,
+};
+
 export const Unknown = (layer: string, route: string) =>
   `Unknown error in the layer ${layer} and route ${route}`;

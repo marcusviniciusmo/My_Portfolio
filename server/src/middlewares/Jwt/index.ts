@@ -1,6 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import {
+  ThrowInvalidTokenException,
+  ThrowAuthenticationFailedException,
+} from '../../utils/Functions';
 
 dotenv.config();
 
@@ -14,11 +18,17 @@ export const AuthenticateJwt = (
   const authHeader = request.headers.authorization;
 
   try {
+    if (!authHeader) {
+      ThrowInvalidTokenException();
+    }
+
     const token = authHeader!.split(' ')[1];
 
     const decoded = jwt.verify(token, secretKey);
     request.decoded = decoded;
 
     next();
-  } catch (error) {}
+  } catch (error) {
+    ThrowAuthenticationFailedException(error, response);
+  }
 };

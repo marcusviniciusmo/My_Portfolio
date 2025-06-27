@@ -46,3 +46,26 @@ export function ThrowRepositoryException(route: string, userId?: string) {
 export function ThrowNotFoundException(route: string, userId?: string) {
   throw new Exception.NotFound(route, { userId });
 }
+
+export function ThrowAuthenticationFailedException(
+  error: any,
+  response: Response,
+) {
+  const isInvalidTokenException = error instanceof Exception.InvalidToken;
+
+  console.log(error);
+
+  if (!isInvalidTokenException) {
+    const route = 'AuthenticationFailed';
+
+    error = new Exception.AuthenticationFailed(route);
+  }
+
+  return response.status(401).json(error);
+}
+
+export function ThrowInvalidTokenException() {
+  const route = 'InvalidToken';
+
+  throw new Exception.InvalidToken(route);
+}

@@ -3,7 +3,7 @@ import { Download } from '@mui/icons-material';
 import { DownloadCVProps } from '../../@types/downloadCV';
 import { DownloadCVContainer } from './styles';
 
-export function DownloadCV({ name, curriculum }: DownloadCVProps) {
+export function DownloadCV({ name, curriculum, isLoading }: DownloadCVProps) {
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
 
   const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
@@ -43,6 +43,7 @@ export function DownloadCV({ name, curriculum }: DownloadCVProps) {
     <div>
       <DownloadCVContainer
         aria-label="Download CV"
+        className={isLoading ? 'skeleton' : ''}
         title={title}
         onClick={downloadCV}
       >

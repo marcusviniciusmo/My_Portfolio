@@ -28,5 +28,7 @@ export const CreateCertificateAreasService = async (route: string) => {
     );
 
     return certificateAreasInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route);
+  }
 };

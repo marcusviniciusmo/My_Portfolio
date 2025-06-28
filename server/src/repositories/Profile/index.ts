@@ -10,7 +10,7 @@ export const GetProfileByIdRepository = (route: string, userId: string) => {
 
     return profileById;
   } catch (error) {
-    ThrowRepositoryException(route, userId);
+    ThrowRepositoryException(error, route, userId);
   }
 };
 
@@ -26,6 +26,6 @@ export const CreateProfileRepository = async (route: string) => {
 
     return profileInserted;
   } catch (error) {
-    ThrowRepositoryException(route);
+    ThrowRepositoryException(error, route);
   }
 };

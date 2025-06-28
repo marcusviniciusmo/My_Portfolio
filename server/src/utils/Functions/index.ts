@@ -32,9 +32,12 @@ export function ThrowControllerException(
   const isServiceException = error instanceof Exception.Service;
   const isRepositoryException = error instanceof Exception.Repository;
   const isNotFoundException = error instanceof Exception.NotFound;
+  const isConflictException = error instanceof Exception.Conflict;
 
   if (isNotFoundException) {
     statusCode = 404;
+  } else if (isConflictException) {
+    statusCode = 409;
   } else if (!isServiceException && !isRepositoryException) {
     error = new Exception.Controller(route, { userId });
   }
@@ -51,20 +54,35 @@ export function ThrowServiceException(
 ) {
   const isRepositoryException = error instanceof Exception.Repository;
   const isNotFoundException = error instanceof Exception.NotFound;
+  const isConflictException = error instanceof Exception.Conflict;
 
-  if (isRepositoryException || isNotFoundException) {
+  if (isRepositoryException || isNotFoundException || isConflictException) {
     throw error;
   } else {
     throw new Exception.Service(route, { userId });
   }
 }
 
-export function ThrowRepositoryException(route: string, userId?: string) {
-  throw new Exception.Repository(route, { userId });
+export function ThrowRepositoryException(
+  error: any,
+  route: string,
+  userId?: string,
+) {
+  const isConflictException = error instanceof Exception.Conflict;
+
+  if (isConflictException) {
+    throw error;
+  } else {
+    throw new Exception.Repository(route, { userId });
+  }
 }
 
 export function ThrowNotFoundException(route: string, userId?: string) {
   throw new Exception.NotFound(route, { userId });
+}
+
+export function ThrowConflictException(route: string, userId?: string) {
+  throw new Exception.Conflict(route, { userId });
 }
 
 export function ThrowAuthenticationFailedException(

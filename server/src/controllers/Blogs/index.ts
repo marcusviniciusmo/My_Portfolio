@@ -32,5 +32,7 @@ export const CreateBlogsByUserController = async (
     const blogsByUserInserted = await CreateBlogsByUserService(route, userId);
 
     return response.status(201).json(blogsByUserInserted);
-  } catch (error) {}
+  } catch (error) {
+    ThrowControllerException(error, response, route, userId);
+  }
 };

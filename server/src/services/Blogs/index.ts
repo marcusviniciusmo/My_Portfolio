@@ -32,5 +32,7 @@ export const CreateBlogsByUserService = async (
     );
 
     return blogsByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

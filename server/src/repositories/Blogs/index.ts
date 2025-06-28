@@ -1,6 +1,9 @@
 import { prisma } from '../../config/Repository';
 import { GetBlogsByUserToInsert } from '../../scripts/Blogs';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetBlogsByUserRepository = async (
   route: string,
@@ -19,7 +22,7 @@ export const GetBlogsByUserRepository = async (
 
     return blogsByUserFormatted;
   } catch (error) {
-    ThrowRepositoryException(route, userId);
+    ThrowRepositoryException(error, route, userId);
   }
 };
 
@@ -43,6 +46,10 @@ export const CreateBlogsByUserRepository = async (
         !existingBlogsNamesByUser.has(blogToInsert.name.toLowerCase().trim()),
     );
 
+    if (blogsToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const blogsByUserInserted = await prisma.$transaction(async tx => {
       const inserted = [];
 
@@ -58,5 +65,7 @@ export const CreateBlogsByUserRepository = async (
     });
 
     return blogsByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

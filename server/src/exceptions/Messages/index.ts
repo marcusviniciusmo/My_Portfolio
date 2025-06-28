@@ -3,6 +3,8 @@ export const Controller = {
     `Failed to process blog(s) request for user ID ${userId}.`,
   CreateBlogsByUser: ({ userId }: { userId: string }) =>
     `Failed to create blog(s) for user ID ${userId}.`,
+  GetCertificateAreas: () =>
+    `Failed to process request to get certificate areas.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -13,6 +15,7 @@ export const Service = {
     `Unable to retrieve blog(s) for user ID ${userId}.`,
   CreateBlogsByUser: ({ userId }: { userId: string }) =>
     `Unable to create blog(s) for user ID ${userId}.`,
+  GetCertificateAreas: () => `Unable to retrieve certificate areas.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -23,6 +26,7 @@ export const Repository = {
     `Failed to fetch blog(s) for user ID ${userId}.`,
   CreateBlogsByUser: ({ userId }: { userId: string }) =>
     `Failed to create blog(s) for user ID ${userId}.`,
+  GetCertificateAreas: () => `Failed to fetch certificate areas.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -31,12 +35,13 @@ export const Repository = {
 export const NotFound = {
   GetBlogsByUser: ({ userId }: { userId: string }) =>
     `Blog(s) from user ID ${userId} not found.`,
+  GetCertificateAreas: () => `Certificate areas not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };
 
 export const Conflict = {
-  CreateBlogsByUser: ({ userId }: { userId: string }) => 
+  CreateBlogsByUser: ({ userId }: { userId: string }) =>
     `Blog(s) with user ID ${userId} exists on database.`,
 };
 

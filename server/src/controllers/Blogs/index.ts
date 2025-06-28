@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import { GetBlogsByUserService } from '../../services/Blogs';
+import {
+  GetBlogsByUserService,
+  CreateBlogsByUserService,
+} from '../../services/Blogs';
 import { ThrowControllerException } from '../../utils/Functions';
 
 export const GetBlogsByUserController = async (
@@ -16,4 +19,18 @@ export const GetBlogsByUserController = async (
   } catch (error) {
     ThrowControllerException(error, response, route, userId);
   }
+};
+
+export const CreateBlogsByUserController = async (
+  request: Request,
+  response: Response,
+) => {
+  const { userId } = request.params;
+  const route = 'CreateBlogsByUser';
+
+  try {
+    const blogsByUserInserted = await CreateBlogsByUserService(route, userId);
+
+    return response.status(201).json(blogsByUserInserted);
+  } catch (error) {}
 };

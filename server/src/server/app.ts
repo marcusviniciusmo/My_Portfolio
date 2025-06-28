@@ -4,7 +4,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import { RestrictWriteRoute } from '../utils/Functions';
 
-import { GetBlogsByUserRoute } from '../routes/Blogs';
+import { GetBlogsByUserRoute, CreateBlogsByUserRoute } from '../routes/Blogs';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
@@ -29,17 +29,12 @@ app.use(RestrictWriteRoute);
 
 /* BLOGS */
 app.use(GetBlogsByUserRoute);
+app.use(CreateBlogsByUserRoute);
 /* JWT */
 app.use(GenerateJwtTokenRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.post('/blogs/:userId', (request, response) => {
-  return response.json({
-    message: 'Post blogs',
-  });
-});
 
 app.get('/certificates/:userId', (request, response) => {
   return response.json({

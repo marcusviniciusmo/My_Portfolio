@@ -1,4 +1,7 @@
-import { GetBlogsByUserRepository } from '../../repositories/Blogs';
+import {
+  GetBlogsByUserRepository,
+  CreateBlogsByUserRepository,
+} from '../../repositories/Blogs';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -16,4 +19,18 @@ export const GetBlogsByUserService = async (route: string, userId: string) => {
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateBlogsByUserService = async (
+  route: string,
+  userId: string,
+) => {
+  try {
+    const blogsByUserInserted = await CreateBlogsByUserRepository(
+      route,
+      userId,
+    );
+
+    return blogsByUserInserted;
+  } catch (error) {}
 };

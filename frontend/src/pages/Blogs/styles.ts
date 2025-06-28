@@ -21,17 +21,22 @@ export const Name = styled.h3`
   margin: 2rem 0 0;
 `;
 
-export const Blog = styled.div.withConfig({ shouldForwardProp })<BlogProps>`
-  background: ${props =>
+const BlogModel = styled.div`
+  width: 32rem;
+  margin: 2rem;
+  padding: 2rem;
+`;
+
+export const Blog = styled(BlogModel).withConfig({
+  shouldForwardProp,
+})<BlogProps>`
+  background: ${(props) =>
     props.theme.name === ThemesNames.DARK ? 'transparent' : props.borderColor};
   border: ${({ theme }) =>
     theme.name === ThemesNames.DARK &&
     `2px solid ${theme.styles.secondaryBackground}`};
-  opacity: ${props =>
+  opacity: ${(props) =>
     props.isListInHover ? (props.isItemInHover ? 1 : 0.5) : 1};
-  width: 32rem;
-  margin: 2rem;
-  padding: 2rem;
   border-radius: 0.8rem;
 
   &:hover {
@@ -39,6 +44,10 @@ export const Blog = styled.div.withConfig({ shouldForwardProp })<BlogProps>`
       text-decoration: underline;
     }
   }
+`;
+
+export const BlogSkeleton = styled(BlogModel)`
+  height: 15rem;
 `;
 
 export const Box = styled.div`

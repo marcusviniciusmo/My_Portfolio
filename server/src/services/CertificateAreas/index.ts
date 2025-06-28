@@ -1,4 +1,7 @@
-import { GetCertificateAreasRepository } from '../../repositories/CertificateAreas';
+import {
+  GetCertificateAreasRepository,
+  CreateCertificateAreasRepository,
+} from '../../repositories/CertificateAreas';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -16,4 +19,14 @@ export const GetCertificateAreasService = async (route: string) => {
   } catch (error) {
     ThrowServiceException(error, route);
   }
+};
+
+export const CreateCertificateAreasService = async (route: string) => {
+  try {
+    const certificateAreasInserted = await CreateCertificateAreasRepository(
+      route,
+    );
+
+    return certificateAreasInserted;
+  } catch (error) {}
 };

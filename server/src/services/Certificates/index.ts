@@ -1,9 +1,25 @@
 import { GetCertificatesByUserRepository } from '../../repositories/Certificates';
+import {
+  ThrowServiceException,
+  ThrowNotFoundException,
+} from '../../utils/Functions';
 
-export const GetCertificatesByUserService = async (userId: string) => {
+export const GetCertificatesByUserService = async (
+  route: string,
+  userId: string,
+) => {
   try {
-    const certificatesByUser = await GetCertificatesByUserRepository(userId);
+    const certificatesByUser = await GetCertificatesByUserRepository(
+      route,
+      userId,
+    );
+
+    if (certificatesByUser?.length === 0) {
+      ThrowNotFoundException(route, userId);
+    }
 
     return certificatesByUser;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

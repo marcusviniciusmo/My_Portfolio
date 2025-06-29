@@ -11,6 +11,8 @@ export const Controller = {
     `Failed to process request to get certificate type(s).`,
   CreateCertificateTypes: () =>
     `Failed to process request to create certificate type(s).`,
+  GetCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -25,6 +27,8 @@ export const Service = {
   CreateCertificateAreas: () => `Unable to create certificate area(s).`,
   GetCertificateTypes: () => `Unable to retrieve certificate type(s).`,
   CreateCertificateTypes: () => `Unable to create certificate type(s).`,
+  GetCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Unable to retrieve certificate(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -39,6 +43,8 @@ export const Repository = {
   CreateCertificateAreas: () => `Failed to create certificate area(s).`,
   GetCertificateTypes: () => `Failed to fetch certificate type(s).`,
   CreateCertificateTypes: () => `Failed to create certificate type(s).`,
+  GetCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Failed to fetch certificate(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -49,6 +55,8 @@ export const NotFound = {
     `Blog(s) from user ID ${userId} not found.`,
   GetCertificateAreas: () => `Certificate areas not found.`,
   GetCertificateTypes: () => `Certificate type(s) not found.`,
+  GetCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Certificate(s) with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };

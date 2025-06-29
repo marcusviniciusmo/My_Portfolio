@@ -9,6 +9,7 @@ import {
   GetCertificateAreasRoute,
   CreateCertificateAreasRoute,
 } from '../routes/CertificateAreas';
+import { GetCertificateTypesRoute } from '../routes/CertificateTypes';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
@@ -37,6 +38,8 @@ app.use(CreateBlogsByUserRoute);
 /* CERTIFICATE AREAS */
 app.use(GetCertificateAreasRoute);
 app.use(CreateCertificateAreasRoute);
+/* CERTIFICATE TYPES */
+app.use(GetCertificateTypesRoute);
 /* JWT */
 app.use(GenerateJwtTokenRoute);
 /* PROFILE */
@@ -52,12 +55,6 @@ app.get('/certificates/:userId', (request, response) => {
 app.post('/certificates/:userId', (request, response) => {
   return response.json({
     message: 'Post certificates',
-  });
-});
-
-app.get('/certificateTypes', (request, response) => {
-  return response.json({
-    message: 'Get certificate types',
   });
 });
 

@@ -28,5 +28,7 @@ export const CreateCertificateTypesService = async (route: string) => {
     );
 
     return certificateTypesInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route);
+  }
 };

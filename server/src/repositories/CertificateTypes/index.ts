@@ -1,6 +1,9 @@
 import { prisma } from '../../config/Repository';
 import { GetCertificateTypesToInsert } from '../../scripts/CertificateTypes';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetCertificateTypesRepository = async (route: string) => {
   try {
@@ -33,6 +36,10 @@ export const CreateCertificateTypesRepository = async (route: string) => {
         ),
     );
 
+    if (typesToInsert.length === 0) {
+      ThrowConflictException(route);
+    }
+
     const certificateTypesInserted = await prisma.$transaction(async tx => {
       const inserted = [];
 
@@ -48,5 +55,7 @@ export const CreateCertificateTypesRepository = async (route: string) => {
     });
 
     return certificateTypesInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route);
+  }
 };

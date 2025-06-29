@@ -1,4 +1,7 @@
-import { GetCertificateTypesRepository } from '../../repositories/CertificateTypes';
+import {
+  GetCertificateTypesRepository,
+  CreateCertificateTypesRepository,
+} from '../../repositories/CertificateTypes';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -16,4 +19,14 @@ export const GetCertificateTypesService = async (route: string) => {
   } catch (error) {
     ThrowServiceException(error, route);
   }
+};
+
+export const CreateCertificateTypesService = async (route: string) => {
+  try {
+    const certificateTypesInserted = await CreateCertificateTypesRepository(
+      route,
+    );
+
+    return certificateTypesInserted;
+  } catch (error) {}
 };

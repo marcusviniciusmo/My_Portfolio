@@ -38,5 +38,7 @@ export const CreateCertificatesByUserService = async (
     );
 
     return certificatesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

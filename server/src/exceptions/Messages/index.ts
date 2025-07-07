@@ -13,6 +13,8 @@ export const Controller = {
     `Failed to process request to create certificate type(s).`,
   GetCertificatesByUser: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
+  CreateCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -29,6 +31,8 @@ export const Service = {
   CreateCertificateTypes: () => `Unable to create certificate type(s).`,
   GetCertificatesByUser: ({ userId }: { userId: string }) =>
     `Unable to retrieve certificate(s) for user ID ${userId}.`,
+  CreateCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Unable to create certificate(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -45,6 +49,8 @@ export const Repository = {
   CreateCertificateTypes: () => `Failed to create certificate type(s).`,
   GetCertificatesByUser: ({ userId }: { userId: string }) =>
     `Failed to fetch certificate(s) for user ID ${userId}.`,
+  CreateCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Failed to create certificate(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -66,6 +72,8 @@ export const Conflict = {
     `Blog(s) with user ID ${userId} exists on database.`,
   CreateCertificateAreas: () => `Certificate area(s) exists on database.`,
   CreateCertificateTypes: () => `Certificate type(s) exists on database.`,
+  CreateCertificatesByUser: ({ userId }: { userId: string }) =>
+    `Certificate(s) with user ID ${userId} exists on database.`,
 };
 
 export const AuthenticationFailed = {

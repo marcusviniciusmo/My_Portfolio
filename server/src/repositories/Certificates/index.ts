@@ -2,7 +2,10 @@ import { prisma } from '../../config/Repository';
 import { GetCertificateAreasRepository } from '../CertificateAreas';
 import { GetCertificateTypesRepository } from '../CertificateTypes';
 import { GetCertificatesByUserToInsert } from '../../scripts/Certificates';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetCertificatesByUserRepository = async (
   route: string,
@@ -74,6 +77,10 @@ export const CreateCertificatesByUserRepository = async (
         ),
     );
 
+    if (certificatesToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const certificatesByUserInserted = await prisma.$transaction(async tx => {
       const insertCertificateAreaIfNoExists = async (
         certificateArea: string,
@@ -138,5 +145,7 @@ export const CreateCertificatesByUserRepository = async (
     });
 
     return certificatesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

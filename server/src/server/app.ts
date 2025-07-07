@@ -13,7 +13,10 @@ import {
   GetCertificateTypesRoute,
   CreateCertificateTypesRoute,
 } from '../routes/CertificateTypes';
-import { GetCertificatesByUserRoute } from '../routes/Certificates';
+import {
+  GetCertificatesByUserRoute,
+  CreateCertificatesByUserRoute,
+} from '../routes/Certificates';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
@@ -47,17 +50,12 @@ app.use(GetCertificateTypesRoute);
 app.use(CreateCertificateTypesRoute);
 /* CERTIFICATES */
 app.use(GetCertificatesByUserRoute);
+app.use(CreateCertificatesByUserRoute);
 /* JWT */
 app.use(GenerateJwtTokenRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.post('/certificates/:userId', (request, response) => {
-  return response.json({
-    message: 'Post certificates',
-  });
-});
 
 app.get('/education/:userId', (request, response) => {
   return response.json({

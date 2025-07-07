@@ -1,4 +1,7 @@
 import { prisma } from '../../config/Repository';
+import { GetCertificateAreasRepository } from '../CertificateAreas';
+import { GetCertificateTypesRepository } from '../CertificateTypes';
+import { GetCertificatesByUserToInsert } from '../../scripts/Certificates';
 import { ThrowRepositoryException } from '../../utils/Functions';
 
 export const GetCertificatesByUserRepository = async (
@@ -14,8 +17,126 @@ export const GetCertificatesByUserRepository = async (
       },
     });
 
-    return certificatesByUser;
+    const certificatesByUserFormatted = certificatesByUser.map(certificate => ({
+      ...certificate,
+      id: certificate.certificate_ID,
+      certificate_ID: undefined,
+      area: certificate.area_ID.areaDescription,
+      area_ID: undefined,
+      type: certificate.type_ID.typeDescription,
+      type_ID: undefined,
+    }));
+
+    return certificatesByUserFormatted;
   } catch (error) {
     ThrowRepositoryException(error, route, userId);
   }
+};
+
+export const CreateCertificatesByUserRepository = async (
+  route: string,
+  userId: string,
+) => {
+  const certificatesByUserToInsert = GetCertificatesByUserToInsert(userId);
+
+  try {
+    const existingCertificatesByUser = await GetCertificatesByUserRepository(
+      route,
+      userId,
+    );
+
+    const existingCertificatesNamesByUser = new Set(
+      existingCertificatesByUser?.map(existingCertificateByUser =>
+        existingCertificateByUser.name.toLowerCase().trim(),
+      ),
+    );
+
+    const existingCertificateAreas = await GetCertificateAreasRepository(route);
+    const existingCertificateAreasDescription = new Map(
+      existingCertificateAreas?.map(existingArea => [
+        existingArea.areaDescription.toLowerCase().trim(),
+        existingArea.area_ID,
+      ]),
+    );
+
+    const existingCertificateTypes = await GetCertificateTypesRepository(route);
+    const existingCertificateTypesDescription = new Map(
+      existingCertificateTypes?.map(existingType => [
+        existingType.typeDescription.toLowerCase().trim(),
+        existingType.type_ID,
+      ]),
+    );
+
+    const certificatesToInsert = certificatesByUserToInsert.filter(
+      certificateToInsert =>
+        !existingCertificatesNamesByUser.has(
+          certificateToInsert.name.toLowerCase().trim(),
+        ),
+    );
+
+    const certificatesByUserInserted = await prisma.$transaction(async tx => {
+      const insertCertificateAreaIfNoExists = async (
+        certificateArea: string,
+      ) => {
+        const areaToInsert = certificateArea.toLowerCase().trim();
+
+        if (!existingCertificateAreasDescription.has(areaToInsert)) {
+          const newArea = await tx.certificateAreas.create({
+            data: { areaDescription: certificateArea },
+          });
+
+          existingCertificateAreasDescription.set(
+            areaToInsert,
+            newArea.area_ID,
+          );
+
+          return newArea.area_ID;
+        }
+
+        return existingCertificateAreasDescription.get(areaToInsert);
+      };
+
+      const insertCertificateTypeIfNoExists = async (
+        certificateType: string,
+      ) => {
+        const typeToInsert = certificateType.toLowerCase().trim();
+
+        if (!existingCertificateTypesDescription.has(typeToInsert)) {
+          const newType = await tx.certificateTypes.create({
+            data: { typeDescription: certificateType },
+          });
+
+          existingCertificateTypesDescription.set(
+            typeToInsert,
+            newType.type_ID,
+          );
+
+          return newType.type_ID;
+        }
+
+        return existingCertificateTypesDescription.get(typeToInsert);
+      };
+
+      const inserted = [];
+
+      for (const certificate of certificatesToInsert) {
+        const areaId = await insertCertificateAreaIfNoExists(certificate.area);
+        const typeId = await insertCertificateTypeIfNoExists(certificate.type);
+
+        const certificateToInsert = await tx.certificates.create({
+          data: {
+            ...certificate,
+            area: areaId as string,
+            type: typeId as string,
+          },
+        });
+
+        inserted.push(certificateToInsert);
+      }
+
+      return inserted;
+    });
+
+    return certificatesByUserInserted;
+  } catch (error) {}
 };

@@ -2,34 +2,47 @@ import { useEffect, useState } from 'react';
 import { TitlePage } from '../../components/TitlePage';
 import { Filter } from '../../components/Filter';
 import { CertificatesModal } from '../../modals/Certificates';
-import { CertificatesData } from '../../data/Certificates';
 import { CertificateType } from '../../@types/certificates';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
-import { CertificatesContainer, Content, Certificate, Image, Title } from './styles';
+import * as Styles from './styles';
 
 export function Certificates() {
-  const [certificatesList, setCertificatesList] = useState<CertificateType[] | []>(CertificatesData);
-  const [certificatesFiltered, setCertificatesFiltered] = useState<CertificateType[]>(certificatesList);
+  const [certificatesList, setCertificatesList] = useState<CertificateType[]>(
+    [],
+  );
+  const [certificatesFiltered, setCertificatesFiltered] =
+    useState<CertificateType[]>(certificatesList);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
-  const [selectedCertificate, setSelectedCertificate] = useState<CertificateType | null>(null);
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<CertificateType | null>(null);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(new Map());
 
+  const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
+  const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
+
   useEffect(() => {
-    setCertificatesList(CertificatesData)
+    fetch(`${baseUrlApi}/certificates/${userIdProfile}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCertificatesList(data);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}.`);
+      });
   }, []);
 
   useEffect(() => {
-    const map = getIndexMap(CertificatesData);
+    const map = getIndexMap(certificatesFiltered);
 
     setIndexMap(map);
-  }, [])
+  }, [certificatesFiltered]);
 
   useEffect(() => {
     if (selectedCertificate) {
       document.body.style.overflow = 'hidden';
-    };
+    }
 
     return () => {
       document.body.style.overflow = '';
@@ -37,7 +50,7 @@ export function Certificates() {
   }, [selectedCertificate]);
 
   function getBorderColor(itemId: string) {
-    return setBorderColor(borderColors, indexMap, itemId)
+    return setBorderColor(borderColors, indexMap, itemId);
   }
 
   function handleMouseEnterList(isHover: boolean) {
@@ -45,7 +58,7 @@ export function Certificates() {
   }
 
   function handleMouseEnterItem(itemId: string | null) {
-    setIsItemInHover(itemId)
+    setIsItemInHover(itemId);
   }
 
   function selectCertificate(certificate: CertificateType | null) {
@@ -53,19 +66,28 @@ export function Certificates() {
   }
 
   return (
-    <CertificatesContainer>
+    <Styles.CertificatesContainer>
       <TitlePage title="Certificates" />
 
-      <Filter list={certificatesList} setListFiltered={setCertificatesFiltered} />
+      <Filter
+        list={certificatesList}
+        setListFiltered={setCertificatesFiltered}
+      />
 
-      <Content
+      <Styles.Content
         onMouseEnter={() => handleMouseEnterList(true)}
         onMouseLeave={() => handleMouseEnterList(false)}
       >
-        {
-          certificatesFiltered.map((certificate) => {
+        {certificatesFiltered
+          .sort((a, b) => {
+            const dateA = new Date(a.conclusion).getTime();
+            const dateB = new Date(b.conclusion).getTime();
+
+            return dateB - dateA;
+          })
+          .map((certificate) => {
             return (
-              <Certificate
+              <Styles.Certificate
                 key={certificate.id}
                 borderColor={getBorderColor(certificate.id)}
                 isListInHover={isListInHover}
@@ -75,25 +97,22 @@ export function Certificates() {
                 title={`${certificate.name} certificate`}
                 onClick={() => selectCertificate(certificate)}
               >
-                <Image
-                  src={certificate.image}
-                  alt=''
+                <Styles.Image
+                  src={`${baseUrlApi}/${certificate.image}`}
+                  alt=""
                 />
-                <Title>{certificate.name}</Title>
-              </Certificate>
-            )
-          })
-        }
-      </Content>
+                <Styles.Title>{certificate.name}</Styles.Title>
+              </Styles.Certificate>
+            );
+          })}
+      </Styles.Content>
 
-      {
-        selectedCertificate && (
-          <CertificatesModal
-            certificate={selectedCertificate}
-            toggleOpenModal={() => selectCertificate(null)}
-          />
-        )
-      }
-    </CertificatesContainer>
+      {selectedCertificate && (
+        <CertificatesModal
+          certificate={selectedCertificate}
+          toggleOpenModal={() => selectCertificate(null)}
+        />
+      )}
+    </Styles.CertificatesContainer>
   );
 }

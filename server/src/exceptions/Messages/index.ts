@@ -15,6 +15,8 @@ export const Controller = {
     `Failed to process request for user ID ${userId}.`,
   CreateCertificatesByUser: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
+  GetEducationByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to get education for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -33,6 +35,8 @@ export const Service = {
     `Unable to retrieve certificate(s) for user ID ${userId}.`,
   CreateCertificatesByUser: ({ userId }: { userId: string }) =>
     `Unable to create certificate(s) for user ID ${userId}.`,
+  GetEducationByUser: ({ userId }: { userId: string }) =>
+    `Unable to retrieve education for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -51,6 +55,8 @@ export const Repository = {
     `Failed to fetch certificate(s) for user ID ${userId}.`,
   CreateCertificatesByUser: ({ userId }: { userId: string }) =>
     `Failed to create certificate(s) for user ID ${userId}.`,
+  GetEducationByUser: ({ userId }: { userId: string }) =>
+    `Failed to fetch education for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -63,6 +69,8 @@ export const NotFound = {
   GetCertificateTypes: () => `Certificate type(s) not found.`,
   GetCertificatesByUser: ({ userId }: { userId: string }) =>
     `Certificate(s) with user ID ${userId} not found.`,
+  GetEducationByUser: ({ userId }: { userId: string }) =>
+    `Education with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };

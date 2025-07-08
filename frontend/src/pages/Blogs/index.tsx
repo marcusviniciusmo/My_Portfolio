@@ -34,10 +34,10 @@ export function Blogs() {
   }, []);
 
   useEffect(() => {
-    const map = getIndexMap(blogsList);
+    const map = getIndexMap(blogsFiltered);
 
     setIndexMap(map);
-  }, []);
+  }, [blogsFiltered]);
 
   function getBorderColor(itemId: string) {
     return setBorderColor(borderColors, indexMap, itemId);

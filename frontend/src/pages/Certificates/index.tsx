@@ -13,6 +13,7 @@ export function Certificates() {
   );
   const [certificatesFiltered, setCertificatesFiltered] =
     useState<CertificateType[]>(certificatesList);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isListInHover, setIsListInHover] = useState<boolean>(false);
   const [isItemInHover, setIsItemInHover] = useState<string | null>(null);
   const [selectedCertificate, setSelectedCertificate] =
@@ -23,6 +24,8 @@ export function Certificates() {
   const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
 
   useEffect(() => {
+    setIsLoading(true);
+
     fetch(`${baseUrlApi}/certificates/${userIdProfile}`)
       .then((response) => response.json())
       .then((data) => {
@@ -30,6 +33,9 @@ export function Certificates() {
       })
       .catch((error) => {
         console.log(`Error: ${error}.`);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
@@ -78,33 +84,43 @@ export function Certificates() {
         onMouseEnter={() => handleMouseEnterList(true)}
         onMouseLeave={() => handleMouseEnterList(false)}
       >
-        {certificatesFiltered
-          .sort((a, b) => {
-            const dateA = new Date(a.conclusion).getTime();
-            const dateB = new Date(b.conclusion).getTime();
+        {isLoading ? (
+          <>
+            <Styles.CertificateSkeleton
+              className={isLoading ? 'skeleton' : ''}
+            />
+          </>
+        ) : (
+          <>
+            {certificatesFiltered
+              .sort((a, b) => {
+                const dateA = new Date(a.conclusion).getTime();
+                const dateB = new Date(b.conclusion).getTime();
 
-            return dateB - dateA;
-          })
-          .map((certificate) => {
-            return (
-              <Styles.Certificate
-                key={certificate.id}
-                borderColor={getBorderColor(certificate.id)}
-                isListInHover={isListInHover}
-                isItemInHover={certificate.id === isItemInHover}
-                onMouseEnter={() => handleMouseEnterItem(certificate.id)}
-                onMouseLeave={() => handleMouseEnterItem(null)}
-                title={`${certificate.name} certificate`}
-                onClick={() => selectCertificate(certificate)}
-              >
-                <Styles.Image
-                  src={`${baseUrlApi}/${certificate.image}`}
-                  alt=""
-                />
-                <Styles.Title>{certificate.name}</Styles.Title>
-              </Styles.Certificate>
-            );
-          })}
+                return dateB - dateA;
+              })
+              .map((certificate) => {
+                return (
+                  <Styles.Certificate
+                    key={certificate.id}
+                    borderColor={getBorderColor(certificate.id)}
+                    isListInHover={isListInHover}
+                    isItemInHover={certificate.id === isItemInHover}
+                    onMouseEnter={() => handleMouseEnterItem(certificate.id)}
+                    onMouseLeave={() => handleMouseEnterItem(null)}
+                    title={`${certificate.name} certificate`}
+                    onClick={() => selectCertificate(certificate)}
+                  >
+                    <Styles.Image
+                      src={`${baseUrlApi}/${certificate.image}`}
+                      alt=""
+                    />
+                    <Styles.Title>{certificate.name}</Styles.Title>
+                  </Styles.Certificate>
+                );
+              })}
+          </>
+        )}
       </Styles.Content>
 
       {selectedCertificate && (

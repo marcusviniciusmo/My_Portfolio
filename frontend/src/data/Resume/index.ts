@@ -1,21 +1,8 @@
 import {
-  EducationType,
   ExperienceType,
   WorkingSkillType,
-  KnowledgeType
+  KnowledgeType,
 } from '../../@types/resume';
-
-export const EducationList: EducationType[] = [
-  {
-    id: '1',
-    period: {
-      start: new Date(2016, 0),
-      end: new Date(2020, 0),
-    },
-    title: 'Information Systems',
-    institution: 'Unifametro, Fortaleza, Brazil',
-  },
-];
 
 export const ExperiencesList: ExperienceType[] = [
   {
@@ -175,5 +162,17 @@ export const KnowledgesList: KnowledgeType[] = [
   },
 ];
 
-export const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',
-  'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];

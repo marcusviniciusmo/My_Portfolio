@@ -1,8 +1,18 @@
 import { useEffect, useState } from 'react';
 import { SchoolOutlined, WorkOutline } from '@mui/icons-material';
 import { TitlePage } from '../../components/TitlePage';
-import { EducationType, ExperienceType, WorkingSkillType, KnowledgeType } from '../../@types/resume';
-import { EducationList, ExperiencesList, WorkingSkillsList, KnowledgesList, monthNames } from '../../data/Resume';
+import {
+  EducationType,
+  ExperienceType,
+  WorkingSkillType,
+  KnowledgeType,
+} from '../../@types/resume';
+import {
+  ExperiencesList,
+  WorkingSkillsList,
+  KnowledgesList,
+  monthNames,
+} from '../../data/Resume';
 import { getIndexMap, setBorderColor } from '../../utils/Functions';
 import { borderColors } from '../../styles/global';
 import * as Styles from './styles';
@@ -10,13 +20,29 @@ import * as Styles from './styles';
 export function Resume() {
   const [educationList, setEducationList] = useState<EducationType[]>([]);
   const [experiencesList, setExperiencesList] = useState<ExperienceType[]>([]);
-  const [workingSkillsList, setWorkingSkillsList] = useState<WorkingSkillType[]>([]);
+  const [workingSkillsList, setWorkingSkillsList] = useState<
+    WorkingSkillType[]
+  >([]);
   const [knowledgesList, setKnowledgesList] = useState<KnowledgeType[]>([]);
-  const [indexMapEducation, setIndexMapEducation] = useState<Map<string, number>>(new Map());
-  const [indexMapExperience, setIndexMapExperience] = useState<Map<string, number>>(new Map());
+  const [indexMapEducation, setIndexMapEducation] = useState<
+    Map<string, number>
+  >(new Map());
+  const [indexMapExperience, setIndexMapExperience] = useState<
+    Map<string, number>
+  >(new Map());
 
   useEffect(() => {
-    setEducationList(EducationList);
+    const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
+    const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
+
+    fetch(`${baseUrlApi}/education/${userIdProfile}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setEducationList(data);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}.`);
+      });
   }, []);
 
   useEffect(() => {
@@ -44,9 +70,9 @@ export function Resume() {
   }, [experiencesList]);
 
   function handleEducationDate(education: EducationType) {
-    const { start, end } = education.period;
+    const { periodStart, periodEnd } = education;
 
-    return `${start.getFullYear()} - ${end.getFullYear()}`;
+    return `${new Date(periodStart).getFullYear()} - ${new Date(periodEnd).getFullYear()}`;
   }
 
   function handleExperienceDate(experience: ExperienceType) {
@@ -54,7 +80,10 @@ export function Resume() {
 
     const isNow = (date: Date) => {
       const now = new Date();
-      return (date.getFullYear() === now.getFullYear()) && (date.getMonth() === now.getMonth());
+      return (
+        date.getFullYear() === now.getFullYear() &&
+        date.getMonth() === now.getMonth()
+      );
     };
 
     const formatDate = (date: Date) => {
@@ -65,15 +94,15 @@ export function Resume() {
     const endFormatted = isNow(end) ? 'Now' : formatDate(end);
 
     return `${startFormatted} - ${endFormatted}`;
-  };
+  }
 
   function getBorderColorEducation(itemId: string) {
     return setBorderColor(borderColors, indexMapEducation, itemId);
-  };
+  }
 
   function getBorderColorExperience(itemId: string) {
     return setBorderColor(borderColors, indexMapExperience, itemId);
-  };
+  }
 
   return (
     <Styles.ResumeContainer>
@@ -129,7 +158,10 @@ export function Resume() {
 
           {workingSkillsList.map((workingSkill) => {
             return (
-              <Styles.WorkingSkillContainer key={workingSkill.id} percentage={workingSkill.percentage}>
+              <Styles.WorkingSkillContainer
+                key={workingSkill.id}
+                percentage={workingSkill.percentage}
+              >
                 <Styles.WorkingSkill>
                   <span>{workingSkill.description}</span>
                   <span>{`${workingSkill.percentage}%`}</span>

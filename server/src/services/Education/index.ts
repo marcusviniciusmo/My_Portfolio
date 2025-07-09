@@ -1,4 +1,7 @@
-import { GetEducationByUserRepository } from '../../repositories/Education';
+import {
+  GetEducationByUserRepository,
+  CreateEducationByUserRepository,
+} from '../../repositories/Education';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -19,4 +22,18 @@ export const GetEducationByUserService = async (
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateEducationByUserService = async (
+  route: string,
+  userId: string,
+) => {
+  try {
+    const educationByUserInserted = await CreateEducationByUserRepository(
+      route,
+      userId,
+    );
+
+    return educationByUserInserted;
+  } catch (error) {}
 };

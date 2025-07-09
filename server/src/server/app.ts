@@ -17,7 +17,10 @@ import {
   GetCertificatesByUserRoute,
   CreateCertificatesByUserRoute,
 } from '../routes/Certificates';
-import { GetEducationByUserRoutes } from '../routes/Education';
+import {
+  GetEducationByUserRoutes,
+  CreateEducationByUserRoute,
+} from '../routes/Education';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
@@ -54,17 +57,12 @@ app.use(GetCertificatesByUserRoute);
 app.use(CreateCertificatesByUserRoute);
 /* EDUCATION */
 app.use(GetEducationByUserRoutes);
+app.use(CreateEducationByUserRoute);
 /* JWT */
 app.use(GenerateJwtTokenRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.post('/education/:userId', (request, response) => {
-  return response.json({
-    message: 'Post education',
-  });
-});
 
 app.get('/experiences/:userId', (request, response) => {
   return response.json({

@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import { GetEducationByUserService } from '../../services/Education';
+import {
+  GetEducationByUserService,
+  CreateEducationByUserService,
+} from '../../services/Education';
 import { ThrowControllerException } from '../../utils/Functions';
 
 export const GetEducationByUserController = async (
@@ -16,4 +19,21 @@ export const GetEducationByUserController = async (
   } catch (error) {
     ThrowControllerException(error, response, route, userId);
   }
+};
+
+export const CreateEducationByUserController = async (
+  request: Request,
+  response: Response,
+) => {
+  const { userId } = request.params;
+  const route = 'CreateEducationByUser';
+
+  try {
+    const educationByUserInserted = await CreateEducationByUserService(
+      route,
+      userId,
+    );
+
+    return response.status(201).json(educationByUserInserted);
+  } catch (error) {}
 };

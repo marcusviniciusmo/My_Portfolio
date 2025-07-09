@@ -35,5 +35,7 @@ export const CreateEducationByUserService = async (
     );
 
     return educationByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

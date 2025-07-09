@@ -1,6 +1,9 @@
 import { prisma } from '../../config/Repository';
 import { GetEducationByUserToInsert } from '../../scripts/Education';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowConflictException,
+  ThrowRepositoryException,
+} from '../../utils/Functions';
 
 export const GetEducationByUserRepository = async (
   route: string,
@@ -48,6 +51,10 @@ export const CreateEducationByUserRepository = async (
         ),
     );
 
+    if (educationToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const educationByUserInserted = await prisma.$transaction(async tx => {
       const inserted = [];
 
@@ -63,5 +70,7 @@ export const CreateEducationByUserRepository = async (
     });
 
     return educationByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

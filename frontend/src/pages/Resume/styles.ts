@@ -53,10 +53,16 @@ export const Title = styled.div`
   }
 `;
 
+export const CardModel = styled.div`
+  height: 13rem;
+`;
+
+export const EducationCardSkeleton = styled(CardModel)``;
+
 export const ResumeCard = styled.div.withConfig({
   shouldForwardProp,
 })<ResumeCardProps>`
-  background: ${props =>
+  background: ${(props) =>
     props.theme.name === ThemesNames.DARK ? 'transparent' : props.borderColor};
   border: ${({ theme }) =>
     theme.name === ThemesNames.DARK &&
@@ -95,7 +101,7 @@ export const WorkingSkillContainer = styled.div.withConfig({
   &::after {
     content: '';
     background: var(--colorResumeIcon);
-    width: ${props => props.percentage}%;
+    width: ${(props) => props.percentage}%;
     height: 3px;
     position: absolute;
   }

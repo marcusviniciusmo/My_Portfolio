@@ -19,6 +19,7 @@ import * as Styles from './styles';
 
 export function Resume() {
   const [educationList, setEducationList] = useState<EducationType[]>([]);
+  const [educationIsLoading, setEducationIsLoading] = useState<boolean>(true);
   const [experiencesList, setExperiencesList] = useState<ExperienceType[]>([]);
   const [workingSkillsList, setWorkingSkillsList] = useState<
     WorkingSkillType[]
@@ -35,6 +36,8 @@ export function Resume() {
     const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
     const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
 
+    setEducationIsLoading(true);
+
     fetch(`${baseUrlApi}/education/${userIdProfile}`)
       .then((response) => response.json())
       .then((data) => {
@@ -42,6 +45,9 @@ export function Resume() {
       })
       .catch((error) => {
         console.log(`Error: ${error}.`);
+      })
+      .finally(() => {
+        setEducationIsLoading(false);
       });
   }, []);
 
@@ -115,18 +121,26 @@ export function Resume() {
             <h4>Education</h4>
           </Styles.Title>
 
-          {educationList.map((education) => {
-            return (
-              <Styles.EducationCard
-                key={education.id}
-                borderColor={getBorderColorEducation(education.id)}
-              >
-                <span>{handleEducationDate(education)}</span>
-                <h3>{education.title}</h3>
-                <p>{education.institution}</p>
-              </Styles.EducationCard>
-            );
-          })}
+          {educationIsLoading ? (
+            <Styles.EducationCardSkeleton
+              className={educationIsLoading ? 'skeleton' : ''}
+            />
+          ) : (
+            <>
+              {educationList.map((education) => {
+                return (
+                  <Styles.EducationCard
+                    key={education.id}
+                    borderColor={getBorderColorEducation(education.id)}
+                  >
+                    <span>{handleEducationDate(education)}</span>
+                    <h3>{education.title}</h3>
+                    <p>{education.institution}</p>
+                  </Styles.EducationCard>
+                );
+              })}
+            </>
+          )}
         </Styles.EducationContainer>
 
         <Styles.ExperienceContainer>

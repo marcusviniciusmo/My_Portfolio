@@ -19,6 +19,8 @@ export const Controller = {
     `Failed to process request to get education for user ID ${userId}.`,
   CreateEducationByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to create education for user ID ${userId}.`,
+  GetExperiencesByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to get experience(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -41,6 +43,8 @@ export const Service = {
     `Unable to retrieve education for user ID ${userId}.`,
   CreateEducationByUser: ({ userId }: { userId: string }) =>
     `Unable do create education for user ID ${userId}.`,
+  GetExperiencesByUser: ({ userId }: { userId: string }) =>
+    `Unable to retrieve experience(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -63,6 +67,8 @@ export const Repository = {
     `Failed to fetch education for user ID ${userId}.`,
   CreateEducationByUser: ({ userId }: { userId: string }) =>
     `Failed to create education for user ID ${userId}.`,
+  GetExperiencesByUser: ({ userId }: { userId: string }) =>
+    `Failed to fetch experience(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -77,6 +83,8 @@ export const NotFound = {
     `Certificate(s) with user ID ${userId} not found.`,
   GetEducationByUser: ({ userId }: { userId: string }) =>
     `Education with user ID ${userId} not found.`,
+  GetExperiencesByUser: ({ userId }: { userId: string }) => 
+    `Experience(s) with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };
@@ -88,7 +96,7 @@ export const Conflict = {
   CreateCertificateTypes: () => `Certificate type(s) exists on database.`,
   CreateCertificatesByUser: ({ userId }: { userId: string }) =>
     `Certificate(s) with user ID ${userId} exists on database.`,
-  CreateEducationByUser: ({ userId }: { userId: string }) => 
+  CreateEducationByUser: ({ userId }: { userId: string }) =>
     `Education with user ID ${userId} exists on database.`,
 };
 

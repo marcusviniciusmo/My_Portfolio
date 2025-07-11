@@ -1,4 +1,7 @@
-import { GetExperiencesByUserRepository } from '../../repositories/Experiences';
+import {
+  GetExperiencesByUserRepository,
+  CreateExperiencesByUserRepository,
+} from '../../repositories/Experiences';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -22,4 +25,18 @@ export const GetExperiencesByUserService = async (
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateExperiencesByUserService = async (
+  route: string,
+  userId: string,
+) => {
+  try {
+    const experiencesByUserInserted = await CreateExperiencesByUserRepository(
+      route,
+      userId,
+    );
+
+    return experiencesByUserInserted;
+  } catch (error) {}
 };

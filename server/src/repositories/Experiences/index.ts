@@ -1,6 +1,9 @@
 import { prisma } from '../../config/Repository';
 import { GetExperiencesByUserToInsert } from '../../scripts/Experiences';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetExperiencesByUserRepository = async (
   route: string,
@@ -42,6 +45,10 @@ export const CreateExperiencesByUserRepository = async (
         ),
     );
 
+    if (experiencesToInsert.length === 0) {
+      ThrowConflictException(route);
+    }
+
     const experiencesByUserInserted = await prisma.$transaction(async tx => {
       const inserted = [];
 
@@ -57,5 +64,7 @@ export const CreateExperiencesByUserRepository = async (
     });
 
     return experiencesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

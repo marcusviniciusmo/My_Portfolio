@@ -38,5 +38,7 @@ export const CreateExperiencesByUserService = async (
     );
 
     return experiencesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

@@ -8,7 +8,6 @@ import {
   KnowledgeType,
 } from '../../@types/resume';
 import {
-  ExperiencesList,
   WorkingSkillsList,
   KnowledgesList,
   monthNames,
@@ -32,10 +31,10 @@ export function Resume() {
     Map<string, number>
   >(new Map());
 
-  useEffect(() => {
-    const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
-    const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
+  const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
+  const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
 
+  useEffect(() => {
     setEducationIsLoading(true);
 
     fetch(`${baseUrlApi}/education/${userIdProfile}`)
@@ -52,7 +51,14 @@ export function Resume() {
   }, []);
 
   useEffect(() => {
-    setExperiencesList(ExperiencesList);
+    fetch(`${baseUrlApi}/experiences/${userIdProfile}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setExperiencesList(data);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}.`);
+      });
   }, []);
 
   useEffect(() => {
@@ -82,10 +88,12 @@ export function Resume() {
   }
 
   function handleExperienceDate(experience: ExperienceType) {
-    const { start, end } = experience.period;
+    const periodStart = new Date(experience.periodStart);
+    const periodEnd = new Date(experience.periodEnd);
 
     const isNow = (date: Date) => {
       const now = new Date();
+
       return (
         date.getFullYear() === now.getFullYear() &&
         date.getMonth() === now.getMonth()
@@ -96,8 +104,8 @@ export function Resume() {
       return `${monthNames[date.getMonth()]}/${date.getFullYear()}`;
     };
 
-    const startFormatted = formatDate(start);
-    const endFormatted = isNow(end) ? 'Now' : formatDate(end);
+    const startFormatted = formatDate(periodStart);
+    const endFormatted = isNow(periodEnd) ? 'Now' : formatDate(periodEnd);
 
     return `${startFormatted} - ${endFormatted}`;
   }

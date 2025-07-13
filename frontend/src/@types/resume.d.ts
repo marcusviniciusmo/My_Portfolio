@@ -1,20 +1,12 @@
 interface ResumeCard {
   id: string;
-  period: {
-    start: Date;
-    end: Date;
-  };
-  title: string;
-  institution: string;
-}
-
-export interface EducationType {
-  id: string;
   periodStart: Date;
   periodEnd: Date;
   title: string;
   institution: string;
 }
+
+export interface EducationType extends ResumeCard {}
 
 export interface ExperienceType extends ResumeCard {}
 

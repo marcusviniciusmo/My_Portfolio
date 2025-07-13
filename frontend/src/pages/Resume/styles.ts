@@ -59,6 +59,8 @@ export const CardModel = styled.div`
 
 export const EducationCardSkeleton = styled(CardModel)``;
 
+export const ExperienceCardSkeleton = styled(CardModel)``;
+
 export const ResumeCard = styled.div.withConfig({
   shouldForwardProp,
 })<ResumeCardProps>`

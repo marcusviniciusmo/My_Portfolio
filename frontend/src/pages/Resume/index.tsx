@@ -20,6 +20,8 @@ export function Resume() {
   const [educationList, setEducationList] = useState<EducationType[]>([]);
   const [educationIsLoading, setEducationIsLoading] = useState<boolean>(true);
   const [experiencesList, setExperiencesList] = useState<ExperienceType[]>([]);
+  const [experiencesIsLoading, setExperiencesIsLoading] =
+    useState<boolean>(true);
   const [workingSkillsList, setWorkingSkillsList] = useState<
     WorkingSkillType[]
   >([]);
@@ -51,6 +53,8 @@ export function Resume() {
   }, []);
 
   useEffect(() => {
+    setExperiencesIsLoading(true);
+
     fetch(`${baseUrlApi}/experiences/${userIdProfile}`)
       .then((response) => response.json())
       .then((data) => {
@@ -58,6 +62,9 @@ export function Resume() {
       })
       .catch((error) => {
         console.log(`Error: ${error}.`);
+      })
+      .finally(() => {
+        setExperiencesIsLoading(false);
       });
   }, []);
 
@@ -157,18 +164,26 @@ export function Resume() {
             <h4>Experience</h4>
           </Styles.Title>
 
-          {experiencesList.map((experience) => {
-            return (
-              <Styles.ExperienceCard
-                key={experience.id}
-                borderColor={getBorderColorExperience(experience.id)}
-              >
-                <span>{handleExperienceDate(experience)}</span>
-                <h3>{experience.title}</h3>
-                <p>{experience.institution}</p>
-              </Styles.ExperienceCard>
-            );
-          })}
+          {experiencesIsLoading ? (
+            <Styles.ExperienceCardSkeleton
+              className={experiencesIsLoading ? 'skeleton' : ''}
+            />
+          ) : (
+            <>
+              {experiencesList.map((experience) => {
+                return (
+                  <Styles.ExperienceCard
+                    key={experience.id}
+                    borderColor={getBorderColorExperience(experience.id)}
+                  >
+                    <span>{handleExperienceDate(experience)}</span>
+                    <h3>{experience.title}</h3>
+                    <p>{experience.institution}</p>
+                  </Styles.ExperienceCard>
+                );
+              })}
+            </>
+          )}
         </Styles.ExperienceContainer>
       </Styles.ResumeEducationExperience>
 

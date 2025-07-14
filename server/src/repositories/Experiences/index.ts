@@ -14,15 +14,7 @@ export const GetExperiencesByUserRepository = async (
       where: { user_ID: userId },
     });
 
-    const experiencesByUserFormatted = experiencesByUser.map(
-      experienceByUser => ({
-        ...experienceByUser,
-        id: experienceByUser.experience_ID,
-        experience_ID: undefined,
-      }),
-    );
-
-    return experiencesByUserFormatted;
+    return experiencesByUser;
   } catch (error) {
     ThrowRepositoryException(error, route, userId);
   }

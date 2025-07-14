@@ -61,13 +61,13 @@ model Education {
 }
 
 model Experiences {
-  experience_ID String @id @default(uuid())
-  user_ID       String
-  periodStart   DateTime
-  periodEnd     DateTime
-  title         String
-  institution   String
-  profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  id          String @id @default(uuid())
+  user_ID     String
+  periodStart DateTime
+  periodEnd   DateTime
+  title       String
+  institution String
+  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model Expertises {

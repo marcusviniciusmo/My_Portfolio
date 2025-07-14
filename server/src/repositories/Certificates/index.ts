@@ -22,10 +22,10 @@ export const GetCertificatesByUserRepository = async (
 
     const certificatesByUserFormatted = certificatesByUser.map(certificate => ({
       ...certificate,
-      id: certificate.certificate_ID,
-      certificate_ID: undefined,
       area: certificate.area_ID.areaDescription,
+      area_ID: undefined,
       type: certificate.type_ID.typeDescription,
+      type_ID: undefined,
     }));
 
     return certificatesByUserFormatted;
@@ -90,10 +90,7 @@ export const CreateCertificatesByUserRepository = async (
             data: { areaDescription: certificateArea },
           });
 
-          existingCertificateAreasDescription.set(
-            areaToInsert,
-            newArea.id,
-          );
+          existingCertificateAreasDescription.set(areaToInsert, newArea.id);
 
           return newArea.id;
         }
@@ -111,10 +108,7 @@ export const CreateCertificatesByUserRepository = async (
             data: { typeDescription: certificateType },
           });
 
-          existingCertificateTypesDescription.set(
-            typeToInsert,
-            newType.id,
-          );
+          existingCertificateTypesDescription.set(typeToInsert, newType.id);
 
           return newType.id;
         }

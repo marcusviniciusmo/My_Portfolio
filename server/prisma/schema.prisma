@@ -33,21 +33,21 @@ model CertificateTypes {
 }
 
 model Certificates {
-  certificate_ID  String @id @default(uuid())
-  user_ID         String
-  name            String
-  image           String
-  workload        String?
-  instructor      String?
-  institution     String?
-  conclusion      String
-  type            String
-  score           String?
-  sharingLink     String?
-  area            String
-  profile         Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
-  area_ID         CertificateAreas @relation(fields: [area], references: [id], onDelete: Cascade)
-  type_ID         CertificateTypes @relation(fields: [type], references: [id], onDelete: Cascade)
+  id          String @id @default(uuid())
+  user_ID     String
+  name        String
+  image       String
+  workload    String?
+  instructor  String?
+  institution String?
+  conclusion  String
+  type        String
+  score       String?
+  sharingLink String?
+  area        String
+  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  area_ID     CertificateAreas @relation(fields: [area], references: [id], onDelete: Cascade)
+  type_ID     CertificateTypes @relation(fields: [type], references: [id], onDelete: Cascade)
 }
 
 model Education {

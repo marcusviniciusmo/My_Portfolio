@@ -14,13 +14,7 @@ export const GetEducationByUserRepository = async (
       where: { user_ID: userId },
     });
 
-    const educationByUserFormatted = educationByUser.map(education => ({
-      ...education,
-      id: education.education_ID,
-      education_ID: undefined,
-    }));
-
-    return educationByUserFormatted;
+    return educationByUser;
   } catch (error) {
     ThrowRepositoryException(error, route, userId);
   }

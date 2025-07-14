@@ -26,7 +26,6 @@ export const GetCertificatesByUserRepository = async (
       certificate_ID: undefined,
       area: certificate.area_ID.areaDescription,
       type: certificate.type_ID.typeDescription,
-      type_ID: undefined,
     }));
 
     return certificatesByUserFormatted;
@@ -65,7 +64,7 @@ export const CreateCertificatesByUserRepository = async (
     const existingCertificateTypesDescription = new Map(
       existingCertificateTypes?.map(existingType => [
         existingType.typeDescription.toLowerCase().trim(),
-        existingType.type_ID,
+        existingType.id,
       ]),
     );
 
@@ -114,10 +113,10 @@ export const CreateCertificatesByUserRepository = async (
 
           existingCertificateTypesDescription.set(
             typeToInsert,
-            newType.type_ID,
+            newType.id,
           );
 
-          return newType.type_ID;
+          return newType.id;
         }
 
         return existingCertificateTypesDescription.get(typeToInsert);

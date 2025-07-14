@@ -14,13 +14,7 @@ export const GetBlogsByUserRepository = async (
       where: { user_ID: userId },
     });
 
-    const blogsByUserFormatted = blogsByUser.map(blog => ({
-      ...blog,
-      id: blog.blog_ID,
-      blog_ID: undefined,
-    }));
-
-    return blogsByUserFormatted;
+    return blogsByUser;
   } catch (error) {
     ThrowRepositoryException(error, route, userId);
   }

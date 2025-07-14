@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Blogs {
-  blog_ID String @id @default(uuid())
+  id      String @id @default(uuid())
   user_ID String
   name    String
   image   String

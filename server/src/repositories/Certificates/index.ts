@@ -25,7 +25,6 @@ export const GetCertificatesByUserRepository = async (
       id: certificate.certificate_ID,
       certificate_ID: undefined,
       area: certificate.area_ID.areaDescription,
-      area_ID: undefined,
       type: certificate.type_ID.typeDescription,
       type_ID: undefined,
     }));
@@ -58,7 +57,7 @@ export const CreateCertificatesByUserRepository = async (
     const existingCertificateAreasDescription = new Map(
       existingCertificateAreas?.map(existingArea => [
         existingArea.areaDescription.toLowerCase().trim(),
-        existingArea.area_ID,
+        existingArea.id,
       ]),
     );
 
@@ -94,10 +93,10 @@ export const CreateCertificatesByUserRepository = async (
 
           existingCertificateAreasDescription.set(
             areaToInsert,
-            newArea.area_ID,
+            newArea.id,
           );
 
-          return newArea.area_ID;
+          return newArea.id;
         }
 
         return existingCertificateAreasDescription.get(areaToInsert);

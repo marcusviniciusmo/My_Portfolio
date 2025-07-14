@@ -20,6 +20,12 @@ model Blogs {
   profile Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
+model CertificateAreas {
+  id              String @id @default(uuid())
+  areaDescription String
+  certificates    Certificates[]
+}
+
 model Certificates {
   certificate_ID  String @id @default(uuid())
   user_ID         String
@@ -34,14 +40,8 @@ model Certificates {
   sharingLink     String?
   area            String
   profile         Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
-  area_ID          CertificateAreas @relation(fields: [area], references: [area_ID], onDelete: Cascade)
+  area_ID         CertificateAreas @relation(fields: [area], references: [id], onDelete: Cascade)
   type_ID           CertificateTypes @relation(fields: [type], references: [type_ID], onDelete: Cascade)
-}
-
-model CertificateAreas {
-  area_ID         String @id @default(uuid())
-  areaDescription String
-  certificates    Certificates[]
 }
 
 model CertificateTypes {

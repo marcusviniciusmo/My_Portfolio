@@ -1,4 +1,7 @@
-import { GetIconsRepository } from '../../repositories/Icons';
+import {
+  GetIconsRepository,
+  CreateIconsRepository,
+} from '../../repositories/Icons';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -16,4 +19,12 @@ export const GetIconsService = async (route: string) => {
   } catch (error) {
     ThrowServiceException(error, route);
   }
+};
+
+export const CreateIconsService = async (route: string) => {
+  try {
+    const iconsInserted = await CreateIconsRepository(route);
+
+    return iconsInserted;
+  } catch (error) {}
 };

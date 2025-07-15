@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { GetIconsService } from '../../services/Icons';
+import { GetIconsService, CreateIconsService } from '../../services/Icons';
 import { ThrowControllerException } from '../../utils/Functions';
 
 export const GetIconsController = async (
@@ -15,4 +15,17 @@ export const GetIconsController = async (
   } catch (error) {
     ThrowControllerException(error, response, route);
   }
+};
+
+export const CreateIconsController = async (
+  request: Request,
+  response: Response,
+) => {
+  const route = 'CreateIcons';
+
+  try {
+    const iconsInserted = await CreateIconsService(route);
+
+    return response.status(201).json(iconsInserted);
+  } catch (error) {}
 };

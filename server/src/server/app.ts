@@ -25,6 +25,7 @@ import {
   GetExperiencesByUserRoute,
   CreateExperiencesByUserRoute,
 } from '../routes/Experiences';
+import { GetIconsRoute } from '../routes/Icons';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
@@ -65,6 +66,8 @@ app.use(CreateEducationByUserRoute);
 /* EXPERIENCES */
 app.use(GetExperiencesByUserRoute);
 app.use(CreateExperiencesByUserRoute);
+/* ICONS */
+app.use(GetIconsRoute);
 /* JWT */
 app.use(GenerateJwtTokenRoute);
 /* PROFILE */

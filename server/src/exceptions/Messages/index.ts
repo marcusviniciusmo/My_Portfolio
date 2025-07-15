@@ -23,6 +23,7 @@ export const Controller = {
     `Failed to process request to get experience(s) for user ID ${userId}.`,
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to create experience(s) for user ID ${userId}.`,
+  GetIcons: () => `Failed to process request to get icon(s).`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -49,6 +50,7 @@ export const Service = {
     `Unable to retrieve experience(s) for user ID ${userId}.`,
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Unable to create experience(s) for user ID ${userId}.`,
+  GetIcons: () => `Unable to retrieve icon(s).`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -75,6 +77,7 @@ export const Repository = {
     `Failed to fetch experience(s) for user ID ${userId}.`,
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Failed to create experience(s) for user ID ${userId}.`,
+  GetIcons: () => `Failed to fetch icon(s).`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -91,6 +94,7 @@ export const NotFound = {
     `Education with user ID ${userId} not found.`,
   GetExperiencesByUser: ({ userId }: { userId: string }) =>
     `Experience(s) with user ID ${userId} not found.`,
+  GetIcons: () => `Icon(s) not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };

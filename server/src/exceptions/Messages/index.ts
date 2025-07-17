@@ -24,6 +24,7 @@ export const Controller = {
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to create experience(s) for user ID ${userId}.`,
   GetIcons: () => `Failed to process request to get icon(s).`,
+  CreateIcons: () => `Failed to process request to create icon(s).`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -51,6 +52,7 @@ export const Service = {
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Unable to create experience(s) for user ID ${userId}.`,
   GetIcons: () => `Unable to retrieve icon(s).`,
+  CreateIcons: () => `Unable to create icon(s).`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -78,6 +80,7 @@ export const Repository = {
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Failed to create experience(s) for user ID ${userId}.`,
   GetIcons: () => `Failed to fetch icon(s).`,
+  CreateIcons: () => `Failed to create icon(s).`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -110,6 +113,7 @@ export const Conflict = {
     `Education with user ID ${userId} exists on database.`,
   CreateExperiencesByUser: ({ userId }: { userId: string }) =>
     `Experience(s) with user ID ${userId} exists on database.`,
+  CreateIcons: () => `Icon(s) exists on database.`,
 };
 
 export const AuthenticationFailed = {

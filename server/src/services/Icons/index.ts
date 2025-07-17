@@ -26,5 +26,7 @@ export const CreateIconsService = async (route: string) => {
     const iconsInserted = await CreateIconsRepository(route);
 
     return iconsInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route);
+  }
 };

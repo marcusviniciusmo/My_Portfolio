@@ -27,5 +27,7 @@ export const CreateIconsController = async (
     const iconsInserted = await CreateIconsService(route);
 
     return response.status(201).json(iconsInserted);
-  } catch (error) {}
+  } catch (error) {
+    ThrowControllerException(error, response, route);
+  }
 };

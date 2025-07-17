@@ -1,6 +1,9 @@
 import { prisma } from '../../config/Repository';
 import { GetIconsToInsert } from '../../scripts/Icons';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetIconsRepository = async (route: string) => {
   try {
@@ -31,6 +34,10 @@ export const CreateIconsRepository = async (route: string) => {
         ),
     );
 
+    if (iconsToBeInsert.length === 0) {
+      ThrowConflictException(route);
+    }
+
     const iconsInserted = await prisma.$transaction(async tx => {
       const inserted = [];
 
@@ -46,5 +53,7 @@ export const CreateIconsRepository = async (route: string) => {
     });
 
     return iconsInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route);
+  }
 };

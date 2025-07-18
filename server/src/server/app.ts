@@ -25,6 +25,7 @@ import {
   GetExperiencesByUserRoute,
   CreateExperiencesByUserRoute,
 } from '../routes/Experiences';
+import { GetExpertisesByUserRoute } from '../routes/Expertises';
 import { CreateIconsRoute, GetIconsRoute } from '../routes/Icons';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
@@ -66,6 +67,8 @@ app.use(CreateEducationByUserRoute);
 /* EXPERIENCES */
 app.use(GetExperiencesByUserRoute);
 app.use(CreateExperiencesByUserRoute);
+/* EXPERTISES */
+app.use(GetExpertisesByUserRoute);
 /* ICONS */
 app.use(GetIconsRoute);
 app.use(CreateIconsRoute);
@@ -74,12 +77,6 @@ app.use(GenerateJwtTokenRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.get('/expertises/:userId', (request, response) => {
-  return response.json({
-    message: 'Get expertises',
-  });
-});
 
 app.post('/expertises/:userId', (request, response) => {
   return response.json({

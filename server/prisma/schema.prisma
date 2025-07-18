@@ -75,7 +75,6 @@ model Expertises {
   user_ID       String
   title         String
   text          String
-  color         String
   icon          String
   profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
   icon_ID       Icons @relation(fields: [icon], references: [id], onDelete: Cascade)

@@ -1,7 +1,10 @@
 import { prisma } from '../../config/Repository';
 import { GetIconsRepository } from '../Icons';
 import { GetExpertisesByUserToInsert } from '../../scripts/Expertises';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowConflictException,
+  ThrowRepositoryException,
+} from '../../utils/Functions';
 
 export const GetExpertisesByUserRepository = async (
   route: string,
@@ -54,6 +57,10 @@ export const CreateExpertisesByUserRepository = async (
         ),
     );
 
+    if (expertisesToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const expertisesByUserInserted = await prisma.$transaction(async tx => {
       const insertIconIfNoExists = async (iconDescription: string) => {
         const iconToInsert = iconDescription.toLowerCase().trim();
@@ -90,5 +97,7 @@ export const CreateExpertisesByUserRepository = async (
     });
 
     return expertisesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

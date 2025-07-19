@@ -35,5 +35,7 @@ export const CreateExpertisesByUserService = async (
     );
 
     return expertisesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

@@ -1,4 +1,7 @@
-import { GetExpertisesByUserRepository } from '../../repositories/Expertises';
+import {
+  GetExpertisesByUserRepository,
+  CreateExpertisesByUserRepository,
+} from '../../repositories/Expertises';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -19,4 +22,18 @@ export const GetExpertisesByUserService = async (
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateExpertisesByUserService = async (
+  route: string,
+  userId: string,
+) => {
+  try {
+    const expertisesByUserInserted = await CreateExpertisesByUserRepository(
+      route,
+      userId,
+    );
+
+    return expertisesByUserInserted;
+  } catch (error) {}
 };

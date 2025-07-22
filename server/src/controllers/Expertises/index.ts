@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import { GetExpertisesByUserService } from '../../services/Expertises';
+import {
+  GetExpertisesByUserService,
+  CreateExpertisesByUserService,
+} from '../../services/Expertises';
 import { ThrowControllerException } from '../../utils/Functions';
 
 export const GetExpertisesByUserController = async (
@@ -16,4 +19,21 @@ export const GetExpertisesByUserController = async (
   } catch (error) {
     ThrowControllerException(error, response, route, userId);
   }
+};
+
+export const CreateExpertisesByUserController = async (
+  request: Request,
+  response: Response,
+) => {
+  const { userId } = request.params;
+  const route = 'CreateExpertisesByUser';
+
+  try {
+    const expertisesByUserInserted = await CreateExpertisesByUserService(
+      route,
+      userId,
+    );
+
+    return response.status(201).json(expertisesByUserInserted);
+  } catch (error) {}
 };

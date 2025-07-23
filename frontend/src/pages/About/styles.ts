@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { ThemesNames } from '../../enums/ThemeSwitcher';
 import { ExpertiseCardProps } from '../../@types/about';
 
-const shouldForwardProp = (props: string) => 
+const shouldForwardProp = (props: string) =>
   !['borderColor', 'color'].includes(props);
 
 export const AboutContainer = styled.div.attrs({
@@ -50,7 +50,7 @@ export const ExpertiseCards = styled.div`
 export const ExpertiseCard = styled.div.withConfig({
   shouldForwardProp,
 })<ExpertiseCardProps>`
-  background: ${props =>
+  background: ${(props) =>
     props.theme.name === ThemesNames.DARK
       ? 'transparent'
       : `${props.borderColor}`};
@@ -64,8 +64,13 @@ export const ExpertiseCard = styled.div.withConfig({
 
   .resumeIcon {
     font-size: 4rem;
-    color: ${props => props.color};
+    color: ${(props) => props.color};
   }
+`;
+
+export const ExpertiseCardSkeleton = styled.div`
+  width: 30rem;
+  height: 15rem;
 `;
 
 export const CardTexts = styled.div`

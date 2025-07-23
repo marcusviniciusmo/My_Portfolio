@@ -7,6 +7,7 @@ import * as Styles from './styles';
 
 export function About() {
   const [expertisesList, setExpertisesList] = useState<ExpertiseType[]>([]);
+  const [isLoading, setIsLLoading] = useState<boolean>(true);
   const [indexMap, setIndexMap] = useState<Map<string, number>>(new Map());
 
   const greetingsText = `Hi, I’m Marcus. Nice to meet you.`;
@@ -17,6 +18,8 @@ export function About() {
     in the most creative way and adding value to you.`;
 
   useEffect(() => {
+    setIsLLoading(true);
+
     const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
     const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
 
@@ -27,6 +30,9 @@ export function About() {
       })
       .catch((error) => {
         console.log(`Error: ${error}.`);
+      })
+      .finally(() => {
+        setIsLLoading(false);
       });
   }, []);
 
@@ -54,27 +60,33 @@ export function About() {
       <Styles.ExpertiseContainer>
         <Styles.ExpertiseTitle>What I do!</Styles.ExpertiseTitle>
 
-        <Styles.ExpertiseCards>
-          {expertisesList.map((expertise) => {
-            const IconComponent = icons[expertise.icon];
+        {isLoading ? (
+          <Styles.ExpertiseCardSkeleton
+            className={isLoading ? 'skeleton' : ''}
+          />
+        ) : (
+          <Styles.ExpertiseCards>
+            {expertisesList.map((expertise) => {
+              const IconComponent = icons[expertise.icon];
 
-            return (
-              <Styles.ExpertiseCard
-                key={expertise.id}
-                color={iconColors[expertise.icon]}
-                borderColor={getBorderColor(expertise.id)}
-              >
-                {IconComponent && (
-                  <IconComponent fontSize="large" className="resumeIcon" />
-                )}
-                <Styles.CardTexts>
-                  <Styles.CardTitle>{expertise.title}</Styles.CardTitle>
-                  <Styles.CardText>{expertise.text}</Styles.CardText>
-                </Styles.CardTexts>
-              </Styles.ExpertiseCard>
-            );
-          })}
-        </Styles.ExpertiseCards>
+              return (
+                <Styles.ExpertiseCard
+                  key={expertise.id}
+                  color={iconColors[expertise.icon]}
+                  borderColor={getBorderColor(expertise.id)}
+                >
+                  {IconComponent && (
+                    <IconComponent fontSize="large" className="resumeIcon" />
+                  )}
+                  <Styles.CardTexts>
+                    <Styles.CardTitle>{expertise.title}</Styles.CardTitle>
+                    <Styles.CardText>{expertise.text}</Styles.CardText>
+                  </Styles.CardTexts>
+                </Styles.ExpertiseCard>
+              );
+            })}
+          </Styles.ExpertiseCards>
+        )}
       </Styles.ExpertiseContainer>
     </Styles.AboutContainer>
   );

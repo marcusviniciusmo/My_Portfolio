@@ -29,6 +29,8 @@ export const Controller = {
     `Failed to process request to create expertise(s) for user ID ${userId}.`,
   GetIcons: () => `Failed to process request to get icon(s).`,
   CreateIcons: () => `Failed to process request to create icon(s).`,
+  GetKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to get knowledge(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -61,6 +63,8 @@ export const Service = {
     `Unable to create expertise(s) for user ID ${userId}.`,
   GetIcons: () => `Unable to retrieve icon(s).`,
   CreateIcons: () => `Unable to create icon(s).`,
+  GetKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Unable to retrieve knowledge(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -93,6 +97,8 @@ export const Repository = {
     `Failed to create expertise(s) for user ID ${userId}.`,
   GetIcons: () => `Failed to fetch icon(s).`,
   CreateIcons: () => `Failed to create icon(s).`,
+  GetKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Failed to fetch knowledge(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -112,6 +118,8 @@ export const NotFound = {
   GetExpertisesByUser: ({ userId }: { userId: string }) =>
     `Expertise(s) with user ID ${userId} not found.`,
   GetIcons: () => `Icon(s) not found.`,
+  GetKnowledgesByUser: ({ userId }: { userId: string }) => 
+    `Knowledge(s) with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };

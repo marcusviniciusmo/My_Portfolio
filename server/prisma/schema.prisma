@@ -90,10 +90,10 @@ model Icons {
 }
 
 model Knowledges {
-  knowledge_ID  String @id @default(uuid())
-  user_ID       String
-  description   String
-  profile       Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  id          String @id @default(uuid())
+  user_ID     String
+  description String
+  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
 }
 
 model MenuItems {

@@ -1,4 +1,7 @@
-import { GetKnowledgesByUserRepository } from '../../repositories/Knowledges';
+import {
+  GetKnowledgesByUserRepository,
+  CreateKnowledgesByUserRepository,
+} from '../../repositories/Knowledges';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -19,4 +22,18 @@ export const GetKnowledgesByUserService = async (
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateKnowledgesByUserService = async (
+  route: string,
+  userId: string,
+) => {
+  try {
+    const knowledgesByUserInserted = await CreateKnowledgesByUserRepository(
+      route,
+      userId,
+    );
+
+    return knowledgesByUserInserted;
+  } catch (error) {}
 };

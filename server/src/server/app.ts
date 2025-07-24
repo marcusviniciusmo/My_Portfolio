@@ -31,7 +31,10 @@ import {
 } from '../routes/Expertises';
 import { CreateIconsRoute, GetIconsRoute } from '../routes/Icons';
 import { GenerateJwtTokenRoute } from '../routes/Jwt';
-import { GetKnowledgesByUserRoute } from '../routes/Knowledges';
+import {
+  GetKnowledgesByUserRoute,
+  CreateKnowledgesByUserRoute,
+} from '../routes/Knowledges';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
@@ -81,15 +84,10 @@ app.use(CreateIconsRoute);
 app.use(GenerateJwtTokenRoute);
 /* KNOWLEDGES */
 app.use(GetKnowledgesByUserRoute);
+app.use(CreateKnowledgesByUserRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.post('/knowledges/:userId', (request, response) => {
-  return response.json({
-    message: 'Post knowledges',
-  });
-});
 
 app.get('/menuItems/:userId', (request, response) => {
   return response.json({

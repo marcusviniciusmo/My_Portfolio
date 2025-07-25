@@ -33,6 +33,8 @@ export const Controller = {
     `Failed to process request to get knowledge(s) for user ID ${userId}.`,
   CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to create knowledge(s) for user ID ${userId}.`,
+  GetMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to get menu items for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -69,6 +71,8 @@ export const Service = {
     `Unable to retrieve knowledge(s) for user ID ${userId}.`,
   CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Unable to create knowledge(s) for user ID ${userId}.`,
+  GetMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Unable to retrieve menu item(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -105,6 +109,8 @@ export const Repository = {
     `Failed to fetch knowledge(s) for user ID ${userId}.`,
   CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Failed to create knowledge(s) for user ID ${userId}.`,
+  GetMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Failed to fetch menu item(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -126,6 +132,8 @@ export const NotFound = {
   GetIcons: () => `Icon(s) not found.`,
   GetKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Knowledge(s) with user ID ${userId} not found.`,
+  GetMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Menu Item(s) with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };
@@ -144,8 +152,8 @@ export const Conflict = {
   CreateExpertisesByUser: ({ userId }: { userId: string }) =>
     `Expertise(s) with user ID ${userId} exists on database.`,
   CreateIcons: () => `Icon(s) exists on database.`,
-  CreateKnowledgesByUser: ({ userId }: { userId: string }) => 
-    `Knowledge(s) with user ID ${userId} exists on database.`
+  CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Knowledge(s) with user ID ${userId} exists on database.`,
 };
 
 export const AuthenticationFailed = {

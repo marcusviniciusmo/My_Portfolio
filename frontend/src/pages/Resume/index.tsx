@@ -73,7 +73,14 @@ export function Resume() {
   }, []);
 
   useEffect(() => {
-    setKnowledgesList(KnowledgesList);
+    fetch(`${baseUrlApi}/knowledges/${userIdProfile}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setKnowledgesList(data);
+      })
+      .catch((error) => {
+        console.log(`Erro: ${error}.`);
+      });
   }, []);
 
   useEffect(() => {

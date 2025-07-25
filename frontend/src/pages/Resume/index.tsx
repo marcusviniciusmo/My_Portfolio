@@ -26,6 +26,7 @@ export function Resume() {
     WorkingSkillType[]
   >([]);
   const [knowledgesList, setKnowledgesList] = useState<KnowledgeType[]>([]);
+  const [knowledgesIsLoading, setKnowledgeIsLoading] = useState<boolean>(true);
   const [indexMapEducation, setIndexMapEducation] = useState<
     Map<string, number>
   >(new Map());
@@ -73,6 +74,8 @@ export function Resume() {
   }, []);
 
   useEffect(() => {
+    setKnowledgeIsLoading(true);
+
     fetch(`${baseUrlApi}/knowledges/${userIdProfile}`)
       .then((response) => response.json())
       .then((data) => {
@@ -80,6 +83,9 @@ export function Resume() {
       })
       .catch((error) => {
         console.log(`Erro: ${error}.`);
+      })
+      .finally(() => {
+        setKnowledgeIsLoading(false);
       });
   }, []);
 
@@ -220,15 +226,23 @@ export function Resume() {
             <h4>Knowledges</h4>
           </Styles.Title>
 
-          <Styles.KnowledgesContainer>
-            {knowledgesList.map((knowledge) => {
-              return (
-                <Styles.Knowledge key={knowledge.id}>
-                  <div>{knowledge.description}</div>
-                </Styles.Knowledge>
-              );
-            })}
-          </Styles.KnowledgesContainer>
+          {knowledgesIsLoading ? (
+            <>
+              <Styles.KnowledgesContainerSkeleton
+                className={knowledgesIsLoading ? 'skeleton' : ''}
+              />
+            </>
+          ) : (
+            <Styles.KnowledgesContainer>
+              {knowledgesList.map((knowledge) => {
+                return (
+                  <Styles.Knowledge key={knowledge.id}>
+                    <div>{knowledge.description}</div>
+                  </Styles.Knowledge>
+                );
+              })}
+            </Styles.KnowledgesContainer>
+          )}
         </div>
       </Styles.ResumeWorkingSkillsKnowledges>
     </Styles.ResumeContainer>

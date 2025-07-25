@@ -128,6 +128,11 @@ export const KnowledgesContainer = styled.div`
   column-gap: 1rem;
 `;
 
+export const KnowledgesContainerSkeleton = styled.div`
+  width: 15rem;
+  height: 4rem;
+`;
+
 export const Knowledge = styled.div`
   background: ${({ theme }) => theme.styles.primaryBackground};
   color: ${({ theme }) => theme.styles.secondaryColor};

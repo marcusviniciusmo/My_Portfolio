@@ -31,6 +31,8 @@ export const Controller = {
   CreateIcons: () => `Failed to process request to create icon(s).`,
   GetKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to get knowledge(s) for user ID ${userId}.`,
+  CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to create knowledge(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -65,6 +67,8 @@ export const Service = {
   CreateIcons: () => `Unable to create icon(s).`,
   GetKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Unable to retrieve knowledge(s) for user ID ${userId}.`,
+  CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Unable to create knowledge(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -99,6 +103,8 @@ export const Repository = {
   CreateIcons: () => `Failed to create icon(s).`,
   GetKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Failed to fetch knowledge(s) for user ID ${userId}.`,
+  CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
+    `Failed to create knowledge(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -118,7 +124,7 @@ export const NotFound = {
   GetExpertisesByUser: ({ userId }: { userId: string }) =>
     `Expertise(s) with user ID ${userId} not found.`,
   GetIcons: () => `Icon(s) not found.`,
-  GetKnowledgesByUser: ({ userId }: { userId: string }) => 
+  GetKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Knowledge(s) with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
@@ -138,6 +144,8 @@ export const Conflict = {
   CreateExpertisesByUser: ({ userId }: { userId: string }) =>
     `Expertise(s) with user ID ${userId} exists on database.`,
   CreateIcons: () => `Icon(s) exists on database.`,
+  CreateKnowledgesByUser: ({ userId }: { userId: string }) => 
+    `Knowledge(s) with user ID ${userId} exists on database.`
 };
 
 export const AuthenticationFailed = {

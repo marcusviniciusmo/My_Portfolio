@@ -1,6 +1,9 @@
 import { prisma } from '../../config/Repository';
 import { GetKnowledgesByUserToInsert } from '../../scripts/knowledges';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowConflictException,
+  ThrowRepositoryException,
+} from '../../utils/Functions';
 
 export const GetKnowledgesByUserRepository = async (
   route: string,
@@ -42,6 +45,10 @@ export const CreateKnowledgesByUserRepository = async (
         ),
     );
 
+    if (knowledgesToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const knowledgesByUserInserted = await prisma.$transaction(async tx => {
       const inserted = [];
 
@@ -57,5 +64,7 @@ export const CreateKnowledgesByUserRepository = async (
     });
 
     return knowledgesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

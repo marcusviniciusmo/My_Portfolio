@@ -35,5 +35,7 @@ export const CreateKnowledgesByUserController = async (
     );
 
     return response.status(201).json(knowledgesByUserInserted);
-  } catch (error) {}
+  } catch (error) {
+    ThrowControllerException(error, response, route, userId);
+  }
 };

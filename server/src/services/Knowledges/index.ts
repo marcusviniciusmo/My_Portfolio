@@ -35,5 +35,7 @@ export const CreateKnowledgesByUserService = async (
     );
 
     return knowledgesByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

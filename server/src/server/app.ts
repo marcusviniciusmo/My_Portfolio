@@ -35,6 +35,7 @@ import {
   GetKnowledgesByUserRoute,
   CreateKnowledgesByUserRoute,
 } from '../routes/Knowledges';
+import { GetMenuItemsByUserRoute } from '../routes/MenuItems';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
@@ -85,15 +86,11 @@ app.use(GenerateJwtTokenRoute);
 /* KNOWLEDGES */
 app.use(GetKnowledgesByUserRoute);
 app.use(CreateKnowledgesByUserRoute);
+/* MENU ITEMS */
+app.use(GetMenuItemsByUserRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.get('/menuItems/:userId', (request, response) => {
-  return response.json({
-    message: 'Get menu items',
-  });
-});
 
 app.post('/menuItems/:userId', (request, response) => {
   return response.json({

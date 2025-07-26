@@ -97,13 +97,13 @@ model Knowledges {
 }
 
 model MenuItems {
-  menuItem_ID String @id @default(uuid())
-  user_ID     String
-  label       String
-  icon        String
-  to          String
-  profile     Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
-  icon_ID     Icons @relation(fields: [icon], references: [id], onDelete: Cascade)
+  id      String @id @default(uuid())
+  user_ID String
+  label   String
+  icon    String
+  to      String
+  profile Profile @relation(fields: [user_ID], references: [user_ID], onDelete: Cascade)
+  icon_ID Icons @relation(fields: [icon], references: [id], onDelete: Cascade)
 }
 
 model Networks {

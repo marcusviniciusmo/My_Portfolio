@@ -35,7 +35,10 @@ import {
   GetKnowledgesByUserRoute,
   CreateKnowledgesByUserRoute,
 } from '../routes/Knowledges';
-import { GetMenuItemsByUserRoute } from '../routes/MenuItems';
+import {
+  GetMenuItemsByUserRoute,
+  CreateMenuItemsByUserRoute,
+} from '../routes/MenuItems';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
@@ -88,15 +91,10 @@ app.use(GetKnowledgesByUserRoute);
 app.use(CreateKnowledgesByUserRoute);
 /* MENU ITEMS */
 app.use(GetMenuItemsByUserRoute);
+app.use(CreateMenuItemsByUserRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.post('/menuItems/:userId', (request, response) => {
-  return response.json({
-    message: 'Post menu items',
-  });
-});
 
 app.get('/networks/:userId', (request, response) => {
   return response.json({

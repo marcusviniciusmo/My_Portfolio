@@ -1,4 +1,7 @@
-import { GetMenuItemsByUserRepository } from '../../repositories/MenuItems';
+import {
+  GetMenuItemsByUserRepository,
+  CreateMenuItemsByUserRepository,
+} from '../../repositories/MenuItems';
 import {
   ThrowServiceException,
   ThrowNotFoundException,
@@ -19,4 +22,18 @@ export const GetMenuItemsByUserService = async (
   } catch (error) {
     ThrowServiceException(error, route, userId);
   }
+};
+
+export const CreateMenuItemsByUserService = async (
+  route: string,
+  userId: string,
+) => {
+  try {
+    const menuItemsByUserInserted = await CreateMenuItemsByUserRepository(
+      route,
+      userId,
+    );
+
+    return menuItemsByUserInserted;
+  } catch (error) {}
 };

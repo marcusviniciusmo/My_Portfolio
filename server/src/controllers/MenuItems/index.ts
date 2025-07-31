@@ -1,5 +1,8 @@
 import { Request, Response } from 'express';
-import { GetMenuItemsByUserService } from '../../services/MenuItems';
+import {
+  GetMenuItemsByUserService,
+  CreateMenuItemsByUserService,
+} from '../../services/MenuItems';
 import { ThrowControllerException } from '../../utils/Functions';
 
 export const GetMenuItemsByUserController = async (
@@ -16,4 +19,21 @@ export const GetMenuItemsByUserController = async (
   } catch (error) {
     ThrowControllerException(error, response, route, userId);
   }
+};
+
+export const CreateMenuItemsByUserController = async (
+  request: Request,
+  response: Response,
+) => {
+  const { userId } = request.params;
+  const route = 'CreateMenuItemsByUser';
+
+  try {
+    const menuItemsByUserInserted = await CreateMenuItemsByUserService(
+      route,
+      userId,
+    );
+
+    return response.status(201).json(menuItemsByUserInserted);
+  } catch (error) {}
 };

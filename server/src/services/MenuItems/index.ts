@@ -35,5 +35,7 @@ export const CreateMenuItemsByUserService = async (
     );
 
     return menuItemsByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

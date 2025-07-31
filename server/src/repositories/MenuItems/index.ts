@@ -1,7 +1,10 @@
 import { prisma } from '../../config/Repository';
 import { GetIconsRepository } from '../Icons';
 import { GetMenuItemsByUserToInsert } from '../../scripts/MenuItems';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetMenuItemsByUserRepository = async (
   route: string,
@@ -51,6 +54,10 @@ export const CreateMenuItemsByUserRepository = async (
         ),
     );
 
+    if (menuItemsToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const menuItemsByUserInserted = await prisma.$transaction(async tx => {
       const insertIconIfNoExists = async (icon: string) => {
         const iconToInsert = icon.toLowerCase().trim();
@@ -87,5 +94,7 @@ export const CreateMenuItemsByUserRepository = async (
     });
 
     return menuItemsByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };

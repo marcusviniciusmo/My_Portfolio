@@ -35,6 +35,8 @@ export const Controller = {
     `Failed to process request to create knowledge(s) for user ID ${userId}.`,
   GetMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to get menu items for user ID ${userId}.`,
+  CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to create menu item(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -73,6 +75,8 @@ export const Service = {
     `Unable to create knowledge(s) for user ID ${userId}.`,
   GetMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Unable to retrieve menu item(s) for user ID ${userId}.`,
+  CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Unable to create menu item(s) for user Id ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -111,6 +115,8 @@ export const Repository = {
     `Failed to create knowledge(s) for user ID ${userId}.`,
   GetMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Failed to fetch menu item(s) for user ID ${userId}.`,
+  CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Failed to create menu item(s) for user Id ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -154,6 +160,8 @@ export const Conflict = {
   CreateIcons: () => `Icon(s) exists on database.`,
   CreateKnowledgesByUser: ({ userId }: { userId: string }) =>
     `Knowledge(s) with user ID ${userId} exists on database.`,
+  CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
+    `Menu item(s) with user ID ${userId} exists on database,`,
 };
 
 export const AuthenticationFailed = {

@@ -1,26 +1,35 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { MenuType } from '../../@types/menu';
-import { MenuData } from '../../data/Menu';
+import { MenuType, icons } from '../../@types/menu.d';
 import { MenuContainer, List, Item } from './styles';
 
 export function Menu() {
   const [menuData, setMenuData] = useState<MenuType[]>([]);
 
   useEffect(() => {
-    setMenuData(MenuData);
+    const baseUrlApi = import.meta.env.VITE_BASE_URL_API;
+    const userIdProfile = import.meta.env.VITE_USER_ID_PROFILE;
+
+    fetch(`${baseUrlApi}/menuItems/${userIdProfile}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMenuData(data);
+      })
+      .catch((error) => {
+        console.log(`Error: ${error}.`);
+      });
   });
 
   return (
     <MenuContainer>
       <List>
         {menuData.map((item) => {
-          const IconElement = item.icon;
+          const IconComponent = icons[item.icon];
 
           return (
-            <NavLink to={item.to} key={item.menuItemId}>
+            <NavLink to={item.to} key={item.id}>
               <Item>
-                <IconElement fontSize="large" />
+                {IconComponent && <IconComponent fontSize="large" />}
                 {item.label}
               </Item>
             </NavLink>

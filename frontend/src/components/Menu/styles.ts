@@ -34,3 +34,8 @@ export const Item = styled.div.attrs({
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 `;
+
+export const ItemSkeleton = styled.div`
+  width: 100%;
+  height: 8rem;
+`;

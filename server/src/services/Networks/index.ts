@@ -1,9 +1,22 @@
 import { GetNetworksByUserRepository } from '../../repositories/Networks';
+import {
+  ThrowServiceException,
+  ThrowNotFoundException,
+} from '../../utils/Functions';
 
-export const GetNetworksByUserService = async (userId: string) => {
+export const GetNetworksByUserService = async (
+  route: string,
+  userId: string,
+) => {
   try {
-    const networksByUser = await GetNetworksByUserRepository(userId);
+    const networksByUser = await GetNetworksByUserRepository(route, userId);
+
+    if (networksByUser?.length === 0) {
+      ThrowNotFoundException(route, userId);
+    }
 
     return networksByUser;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

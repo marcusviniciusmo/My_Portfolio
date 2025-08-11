@@ -37,6 +37,8 @@ export const Controller = {
     `Failed to process request to get menu items for user ID ${userId}.`,
   CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to create menu item(s) for user ID ${userId}.`,
+  GetNetworksByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to get network(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -77,6 +79,8 @@ export const Service = {
     `Unable to retrieve menu item(s) for user ID ${userId}.`,
   CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Unable to create menu item(s) for user Id ${userId}.`,
+  GetNetworksByUser: ({ userId }: { userId: string }) =>
+    `Unable to retrieve network(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -117,6 +121,8 @@ export const Repository = {
     `Failed to fetch menu item(s) for user ID ${userId}.`,
   CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Failed to create menu item(s) for user Id ${userId}.`,
+  GetNetworksByUser: ({ userId }: { userId: string }) =>
+    `Failed to fetch network(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -140,6 +146,8 @@ export const NotFound = {
     `Knowledge(s) with user ID ${userId} not found.`,
   GetMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Menu Item(s) with user ID ${userId} not found.`,
+  GetNetworksByUser: ({ userId }: { userId: string }) =>
+    `Network(s) with user ID ${userId} not found.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Profile with user ID ${userId} not found.`,
 };

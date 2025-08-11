@@ -39,6 +39,7 @@ import {
   GetMenuItemsByUserRoute,
   CreateMenuItemsByUserRoute,
 } from '../routes/MenuItems';
+import { GetNetworksByUserRoute } from '../routes/Networks';
 import { GetProfileByIdRoute, CreateProfileRoute } from '../routes/Profile';
 
 dotenv.config();
@@ -92,15 +93,11 @@ app.use(CreateKnowledgesByUserRoute);
 /* MENU ITEMS */
 app.use(GetMenuItemsByUserRoute);
 app.use(CreateMenuItemsByUserRoute);
+/* NETWORKS */
+app.use(GetNetworksByUserRoute);
 /* PROFILE */
 app.use(GetProfileByIdRoute);
 app.use(CreateProfileRoute);
-
-app.get('/networks/:userId', (request, response) => {
-  return response.json({
-    message: 'Get networks',
-  });
-});
 
 app.post('/networks/:userId', (request, response) => {
   return response.json({

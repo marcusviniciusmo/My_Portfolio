@@ -39,6 +39,8 @@ export const Controller = {
     `Failed to process request to create menu item(s) for user ID ${userId}.`,
   GetNetworksByUser: ({ userId }: { userId: string }) =>
     `Failed to process request to get network(s) for user ID ${userId}.`,
+  CreateNetworksByUser: ({ userId }: { userId: string }) =>
+    `Failed to process request to create network(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to process request for user ID ${userId}.`,
   CreateProfile: () => `Failed to process request to create new profile.`,
@@ -81,6 +83,8 @@ export const Service = {
     `Unable to create menu item(s) for user Id ${userId}.`,
   GetNetworksByUser: ({ userId }: { userId: string }) =>
     `Unable to retrieve network(s) for user ID ${userId}.`,
+  CreateNetworksByUser: ({ userId }: { userId: string }) =>
+    `Unable to create network(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Unable to retrieve profile for user ID ${userId}.`,
   CreateProfile: () => `Unable to create new profile.`,
@@ -123,6 +127,8 @@ export const Repository = {
     `Failed to create menu item(s) for user Id ${userId}.`,
   GetNetworksByUser: ({ userId }: { userId: string }) =>
     `Failed to fetch network(s) for user ID ${userId}.`,
+  CreateNetworksByUser: ({ userId }: { userId: string }) => 
+    `Failed to create network(s) for user ID ${userId}.`,
   GetProfileById: ({ userId }: { userId: string }) =>
     `Failed to fetch profile for user ID ${userId}.`,
   CreateProfile: () => `Failed to create new profile.`,
@@ -170,6 +176,8 @@ export const Conflict = {
     `Knowledge(s) with user ID ${userId} exists on database.`,
   CreateMenuItemsByUser: ({ userId }: { userId: string }) =>
     `Menu item(s) with user ID ${userId} exists on database,`,
+  CreateNetworksByUser: ({ userId }: { userId: string }) => 
+    `Network(s) with user ID ${userId} exists on database.`,
 };
 
 export const AuthenticationFailed = {

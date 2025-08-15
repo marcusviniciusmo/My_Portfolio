@@ -35,5 +35,7 @@ export const CreateNetworksByUserService = async (
     );
 
     return networksByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowServiceException(error, route, userId);
+  }
 };

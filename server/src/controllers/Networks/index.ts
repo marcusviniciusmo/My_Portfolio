@@ -35,5 +35,7 @@ export const CreateNetworksByUserController = async (
     );
 
     return response.status(201).json(networksByUserInserted);
-  } catch (error) {}
+  } catch (error) {
+    ThrowControllerException(error, response, route, userId);
+  }
 };

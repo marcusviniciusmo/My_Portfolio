@@ -1,7 +1,10 @@
 import { prisma } from '../../config/Repository';
 import { GetIconsRepository } from '../Icons';
 import { GetNetworksByUserToInsert } from '../../scripts/Networks';
-import { ThrowRepositoryException } from '../../utils/Functions';
+import {
+  ThrowRepositoryException,
+  ThrowConflictException,
+} from '../../utils/Functions';
 
 export const GetNetworksByUserRepository = async (
   route: string,
@@ -60,6 +63,10 @@ export const CreateNetworksByUserRepository = async (
         ),
     );
 
+    if (networksToInsert.length === 0) {
+      ThrowConflictException(route, userId);
+    }
+
     const networksByUserInserted = await prisma.$transaction(async tx => {
       const insertIconIfNoExists = async (icon: string) => {
         const iconToInsert = icon.toLowerCase().trim();
@@ -96,5 +103,7 @@ export const CreateNetworksByUserRepository = async (
     });
 
     return networksByUserInserted;
-  } catch (error) {}
+  } catch (error) {
+    ThrowRepositoryException(error, route, userId);
+  }
 };
